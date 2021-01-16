@@ -1,0 +1,4 @@
+<!--pages/book1_catalog/book1_catalog.wxml-->
+<view wx:for="{{array}}" wx:key="item">
+  <button style = 'width:100%' class='items' bindtap="gotobook1_content">{{item}}</button>
+</view>
