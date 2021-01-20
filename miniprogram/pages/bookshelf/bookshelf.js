@@ -69,9 +69,10 @@ Page({
   }
   ,
   //页面跳转
-  gotobook1_juan:function(){
+  gotobook1_juan:function(e){
     wx.navigateTo({
-      url: '/pages/bookshelf/book1_juan/book1_juan',
+      //url: '/pages/bookshelf/book1_juan/book1_juan?bookname='+ e.currentTarget.dataset.bookname,
+      url: '/pages/bookshelf/book1_juan/book1_juan?bookid=1'
     })
   },
 })

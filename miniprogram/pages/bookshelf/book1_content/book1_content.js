@@ -1,18 +1,29 @@
 // pages/book1_content/book1_content.js
+const db = wx.cloud.database()
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-    array:['太阳之为病，脉浮，头项强痛而恶寒。','太阳病，发热，汗出，恶风，脉缓者，名为中风。','太阳中风，阳浮而阴弱，阳浮者热自发，阴弱者汗自出，啬啬恶寒，淅淅恶风，翕翕发热，鼻鸣，干呕者，桂枝汤主之。']
+    text : ''
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-
+    var thisid = parseInt(options.id)
+    const _ = db.command
+    db.collection('01part').where({
+      relateid: _.eq(thisid)
+    }).get().then(
+      res=>{
+        this.setData({
+          text:res.data
+        })
+      }
+    )
   },
 
   /**
@@ -66,7 +77,7 @@ Page({
   // 页面跳转
   gotobook1_content_detail:function(e){
     wx.navigateTo({
-      url: '/pages/bookshelf/book1_content_detail/book1_content_detail'
+      url: '/pages/bookshelf/book1_content_detail/book1_content_detail?id=' + e.currentTarget.dataset.id
     })
   },
 })

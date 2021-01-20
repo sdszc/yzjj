@@ -1,17 +1,29 @@
 // pages/book1_catalog/book1_catalog.js
+const db = wx.cloud.database()
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-    array:['订正仲景全书伤寒论注','辨太阳病脉证并治上篇']
+    title_name : ''
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+    var thisvolumeid = parseInt(options.volumeid)
+    const _ = db.command
+    db.collection('items').where({
+      volumeid: _.eq(thisvolumeid)
+    }).get().then(
+      res=>{
+        this.setData({
+          title_name:res.data
+        })
+      }
+    )
 
   },
 
@@ -66,7 +78,7 @@ Page({
   // 页面跳转
   gotobook1_content:function(e){
     wx.navigateTo({
-      url: '/pages/bookshelf/book1_content/book1_content'
+      url: '/pages/bookshelf/book1_content/book1_content?id=' + e.currentTarget.dataset.id
     })
   },
 })

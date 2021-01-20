@@ -1,18 +1,29 @@
-// pages/bookshelf/book1_content_detail/book1_content_detail.js
+// pages/book1_content/book1_content.js
+const db = wx.cloud.database()
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-
+    full_text : ''
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-
+    var thisid = parseInt(options.id)
+    const _ = db.command
+    db.collection('01part').where({
+      id: _.eq(thisid)
+    }).get().then(
+      res=>{
+        this.setData({
+          full_text:res.data
+        })
+      }
+    )
   },
 
   /**
@@ -62,5 +73,11 @@ Page({
    */
   onShareAppMessage: function () {
 
-  }
+  },
+  // 页面跳转
+  gotobook1_content_detail:function(e){
+    wx.navigateTo({
+      
+    })
+  },
 })

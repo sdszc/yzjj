@@ -1,18 +1,39 @@
 // pages/bookshelf/book1_juan/book1_juan.js
+const db = wx.cloud.database()
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-    array:['卷一','卷二','卷三']
+    juan_name : '',
+    preface: ''
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-
+    var thisbookid = parseInt(options.bookid)
+    const _ = db.command
+    db.collection('items').where({
+      bookid: _.eq(thisbookid)
+    }).get().then(
+      res=>{
+        this.setData({
+          juan_name:res.data
+        })    
+      }
+    )
+    db.collection('books').where({
+      bookid: _.eq(thisbookid)
+    }).get().then(
+      res=>{
+        this.setData({
+          preface:res.data
+        })    
+      }
+    )
   },
 
   /**
@@ -64,9 +85,9 @@ Page({
 
   },
   //页面跳转
-  gotobook1_cataglog:function(){
+  gotobook1_cataglog:function(e){
     wx.navigateTo({
-      url: '/pages/bookshelf/book1_catalog/book1_catalog',
+      url: '/pages/bookshelf/book1_catalog/book1_catalog?volumeid=' + e.currentTarget.dataset.volumeid,
     })
   },
 })
