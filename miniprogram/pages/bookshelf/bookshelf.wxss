@@ -43,3 +43,55 @@
   color: #09BB07;
   white-space: nowrap;
 }
+.nearCard-fl {
+  width: 30%;
+  float: left;
+}
+
+.nearCard-fl image {
+  width: 160rpx;
+  height: 160rpx;
+  padding: 8% 15%;
+}
+
+.nearCard-fr {
+  font-size: 27rpx;
+  line-height: 50rpx;
+  width: 70%;
+  margin-left: 30%;
+  margin-top: 15rpx;
+  color: #999;
+}
+
+.nearCard-fr text {
+  font-size: 22rpx;
+}
+
+.down {
+  background-color: #efefef;
+  border-bottom-left-radius: 20px;
+  border-bottom-right-radius: 20rpx;
+}
+
+.down view {
+  font-size: 26rpx;
+  color: #999;
+  line-height: 50rpx;
+}
+
+.feedBack {
+  text-align: center;
+  background-color: #eecfbd;
+  border-bottom-left-radius: 10px;
+  border-bottom-right-radius: 10rpx;
+  padding: 5rpx 0;
+  margin: 10rpx 0 0 0;
+}
+.text_small_1 {
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  word-break: break-all;
+  -webkit-line-clamp: 2;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}

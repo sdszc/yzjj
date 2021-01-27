@@ -13,14 +13,24 @@
             <view class="weui-search-bar__cancel-btn" bindtap='方法名a'>搜索</view>
         </view>
     </view>
-    <view style="margin:20px;display:flex;flex-direction:row;">
-      <view style="width:40%;height:170px;margin:10px;">
-        <image style="width:100%;height:100px;--" mode="scaleToFill" src="{{imageSrc1}}"></image>
-        <button style="width:100%" bindtap="gotobook1_juan">《订正伤寒论注》</button>
+    <view class='container'>
+  <!-- 订单列表 -->
+  <block wx:for-items="{{carInfoData}}">
+    <view class='card  b-shadow' bindtap='gotobook1_juan' id="{{item.id}}">
+      <view class='nearCard-fl'>
+        <image src='{{item.imgurl}}'></image>
       </view>
-    <view style="width:40%;height:170px;margin:10px;">
-      <image style="width:100%;height:100px;" mode="scaleToFill" src="{{imageSrc2}}"></image>
-      <button style="width:100%" bindtap="gotobook2_juan">《订正金匮要略》</button>
+      <view class='nearCard-fr'>
+        <view>书名：
+          <text class='c-green'>{{item.bookName}}</text>
+        </view>
+        <view class='text_small_1'>
+          <spcan>简介：
+            <text class='c-green'>{{item.jianJie}}</text>
+          </spcan>
+        </view>
+      </view>
     </view>
-  </view>
+  </block>
+</view>
 </view>

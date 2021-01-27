@@ -1,7 +1,7 @@
 <!--pages/bookshelf/book1_content_detail/book1_content_detail.wxml-->
 <view wx:for="{{full_text}}" wx:key="item">
   <view wx:if="{{item.tips}}">{{item.tips}}</view>
-  <view class="title">{{item.original_text}}</view>
-  <view>{{item.note}}</view>
+  <view class="title"><text decode="{{true}}">&nbsp;&nbsp;&nbsp;&nbsp;{{item.original_text}}</text></view>
+  <view class="text-notes">{{item.note}}</view>
 </view>
 

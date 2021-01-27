@@ -1,1 +1,9 @@
 /* pages/bookshelf/book1_juan/book1_juan.wxss */
+.btns {
+  margin-top: 10rpx;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  flex-grow: 1;
+  align-items: stretch;
+}
