@@ -7,7 +7,7 @@ Page({
    */
   data: {
     juan_name : '',
-    preface: ''
+    preface: '',
   },
 
   /**
@@ -16,19 +16,49 @@ Page({
   onLoad: function (options) {
     var thisbookid = parseInt(options.bookid)
     const _ = db.command
-    db.collection('items').where({
+    const $ = db.command.aggregate
+    db.collection('items').aggregate()
+    .match({
       bookid: _.eq(thisbookid)
-    }).get().then(
-      res=>{
-        this.setData({
-          juan_name:res.data
+    })
+    .group({
+      _id: '$volume_number',
+      volumeid: $.first('$volumeid')
+    })
+    .sort({
+      volumeid: 1
+    })
+    .end()
+    .then(res=>{
+      // console.log(res.list)
+        this.setData({  
+          juan_name: res.list
         })    
       }
     )
+
+    // db.collection('items')
+    // .where({
+    //   bookid: _.eq(thisbookid)
+    // })
+    // .field({
+    //   volumeid: true,
+    //   volume_number: true
+    // })
+    // .get()
+    // .then(res=>{
+    //   console.log(res.data)
+    //   this.setData({
+    //     juan_name:res.data
+    //   })    
+    // })
+
     db.collection('books').where({
       bookid: _.eq(thisbookid)
-    }).get().then(
-      res=>{
+    })
+    .get()
+    .then(res=>{
+      // console.log(res.data)
         this.setData({
           preface:res.data
         })    
