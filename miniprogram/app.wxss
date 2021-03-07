@@ -26,13 +26,12 @@ button::after{
 image {
   width: 100%;
   height: 100%;
-  vertical-align: top;
   display: block;
 }
 
 .card {
   width: 95%;
-  height: 80px;
+  height: 100%;
   background-color: #fff;
   margin: 20rpx auto 0;
   border-radius: 20rpx;

@@ -9,6 +9,7 @@
   background-color: #EFEFF4;
   border-top: 1rpx solid #D7D6DC;
   border-bottom: 1rpx solid #D7D6DC;
+  height: 56px;
 }
 .weui-icon-search_in-box {
   position: absolute;
@@ -29,17 +30,18 @@
   padding-left: 30px;
   padding-right: 30px;
   width: 100%;
+  height: 100%;
   box-sizing: border-box;
   z-index: 1;
 }
 .weui-search-bar__input {
-  height: 28px;
-  line-height: 28px;
+  height: 100%;
+  line-height: 100%;
   font-size: 14px;
 }
 .weui-search-bar__cancel-btn {
-  margin-left: 10px;
-  line-height: 28px;
+  margin-left: 5px;
+  line-height: 36px;
   color: #09BB07;
   white-space: nowrap;
 }
@@ -58,6 +60,7 @@
   font-size: 27rpx;
   line-height: 50rpx;
   width: 70%;
+  height: 100%;
   margin-left: 30%;
   margin-top: 15rpx;
   color: #999;
