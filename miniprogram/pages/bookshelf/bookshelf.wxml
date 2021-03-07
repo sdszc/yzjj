@@ -15,7 +15,7 @@
     </view>
     <view class='container'>
   <!-- 订单列表 -->
-  <block wx:for-items="{{carInfoData}}">
+  <block wx:for-items="{{carInfoData}}" wx:key="item">
     <view class='card  b-shadow' bindtap='gotobook1_juan' id="{{item.id}}">
       <view class='nearCard-fl'>
         <image src='{{item.imgurl}}'></image>

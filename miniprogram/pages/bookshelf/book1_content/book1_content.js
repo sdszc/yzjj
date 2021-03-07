@@ -14,16 +14,32 @@ Page({
    */
   onLoad: function (options) {
     var thisid = parseInt(options.id)
-    const _ = db.command
-    db.collection('01part').where({
-      relateid: _.eq(thisid)
-    }).get().then(
-      res=>{
+    // console.log(thisid)
+    wx.cloud.callFunction({
+      name: 'search',
+      data:{
+        data: thisid
+      },
+      success:res=>{
+        // console.log(res.result)
         this.setData({
-          text:res.data
+          text: res.result.data
         })
       }
-    )
+    })
+
+    // var thisid = parseInt(options.id)
+    // const _ = db.command
+    // db.collection('01part').where({
+    //   relateid: _.eq(thisid)
+    // })
+    // .get()
+    // .then(res=>{
+      
+    //     this.setData({
+    //       text: res.data
+    //     })
+    //   })
   },
 
   /**
@@ -65,7 +81,6 @@ Page({
    * 页面上拉触底事件的处理函数
    */
   onReachBottom: function () {
-
   },
 
   /**

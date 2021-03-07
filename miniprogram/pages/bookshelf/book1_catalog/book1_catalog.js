@@ -19,6 +19,7 @@ Page({
       volumeid: _.eq(thisvolumeid)
     }).get().then(
       res=>{
+        // console.log(res.data)
         this.setData({
           title_name:res.data
         })

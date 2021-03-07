@@ -6,7 +6,8 @@ Page({
    * 页面的初始数据
    */
   data: {
-    full_text : ''
+    full_text: '',
+    fang: ''
   },
 
   /**
@@ -15,15 +16,43 @@ Page({
   onLoad: function (options) {
     var thisid = parseInt(options.id)
     const _ = db.command
+    const $ = db.command.aggregate
     db.collection('01part').where({
       id: _.eq(thisid)
-    }).get().then(
-      res=>{
-        this.setData({
-          full_text:res.data
+    })
+    .get()
+    .then(res=>{
+      // console.log(res.data)
+      this.setData({
+        full_text: res.data
+      })
+      // console.log(res.data[0].formula_flag)
+      var data_element = typeof res.data[0].formula_flag
+      var data = res.data[0].formula_flag
+      if (data_element == 'number') {
+        db.collection('02part').where({
+          id: _.eq(data)
+        })
+        .get()
+        .then(res=>{
+          this.setData({
+            fang: res.data
+          })
+        })
+       }
+      else {
+        db.collection('02part').where({
+          id: _.in(data)
+        })
+        .get()
+        .then(res=>{
+          this.setData({
+            fang: res.data
+          })
         })
       }
-    )
+      
+    })
   },
 
   /**
