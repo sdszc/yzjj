@@ -4,6 +4,6 @@
 </view>
 <view class="btns">
   <view wx:for="{{juan_name}}" wx:key="item">
-    <button style = "width:100%"  bindtap="gotobook1_cataglog"  data-volumeid="{{item.volumeid}}">{{item._id}}</button>
+    <button class="text-left" bindtap="gotobook1_cataglog"  data-volumeid="{{item.volumeid}}">{{item._id}}</button>
   </view>
 </view>

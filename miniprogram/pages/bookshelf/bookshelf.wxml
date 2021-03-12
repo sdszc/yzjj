@@ -1,20 +1,24 @@
 <!--pages/bookshelf/bookshelf.wxml-->
 <view>
-     <view>
+  <view>
+  <view>
         <view class="weui-search-bar">
             <view class="weui-search-bar__form">
             <!-- 搜索框 -->
                 <view class="weui-search-bar__box">
-                    <icon class="weui-icon-search_in-box" type="search" size="25"></icon>
-                    <input type="text" class="weui-search-bar__input" placeholder="请输入搜索内容"/>
+                    <input type="text" class="weui-search-bar__input" placeholder="请输入书名"/>
                 </view>
             </view>
             <!-- 搜索按钮,调用搜索查询方法 -->
-            <view class="weui-search-bar__cancel-btn" bindtap='方法名a'>搜索</view>
+            <view class="weui-icon-search_in-box">
+              <icon type="search" size="30" bindtap='方法名a'></icon>
+            </view>
         </view>
     </view>
-    <view class='container'>
-  <!-- 订单列表 -->
+</view>
+
+  <view class='container'>
+  <!-- 书籍列表 -->
   <block wx:for-items="{{carInfoData}}" wx:key="item">
     <view class='card  b-shadow' bindtap='gotobook1_juan' id="{{item.id}}">
       <view class='nearCard-fl'>
