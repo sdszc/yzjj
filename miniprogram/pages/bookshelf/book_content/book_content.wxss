@@ -1,0 +1,4 @@
+/* pages/book_content/book_content.wxss */
+.font900{
+  font-weight: 900
+}

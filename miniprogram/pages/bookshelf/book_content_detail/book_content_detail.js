@@ -1,4 +1,4 @@
-// pages/bookshelf/bookshelf.js
+// pages/book_content/book_content.js
 const db = wx.cloud.database()
 Page({
 
@@ -6,23 +6,52 @@ Page({
    * 页面的初始数据
    */
   data: {
-    bookData: ''
+    full_text: '',
+    fang: ''
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
-   /**
-   * 生命周期函数--监听页面加载
-   */
   onLoad: function (options) {
-    db.collection('books')
+    var thisid = parseInt(options.id)
+    const _ = db.command
+    const $ = db.command.aggregate
+    db.collection('01part').where({
+      id: _.eq(thisid)
+    })
     .get()
     .then(res=>{
       // console.log(res.data)
       this.setData({
-        bookData: res.data
-      })  
+        full_text: res.data
+      })
+      // console.log(res.data[0].formula_flag)
+      var data_element = typeof res.data[0].formula_flag
+      var data = res.data[0].formula_flag
+      if (data_element == 'number') {
+        db.collection('02part').where({
+          id: _.eq(data)
+        })
+        .get()
+        .then(res=>{
+          this.setData({
+            fang: res.data
+          })
+        })
+       }
+      else {
+        db.collection('02part').where({
+          id: _.in(data)
+        })
+        .get()
+        .then(res=>{
+          this.setData({
+            fang: res.data
+          })
+        })
+      }
+      
     })
   },
 
@@ -73,12 +102,11 @@ Page({
    */
   onShareAppMessage: function () {
 
-  }
-  ,
-  //页面跳转
-  gotobook_juan:function(e){
+  },
+  // 页面跳转
+  gotobook_content_detail:function(e){
     wx.navigateTo({
-      url: '/pages/bookshelf/book_juan/book_juan?bookid='+ e.currentTarget.dataset.bookid
+      
     })
   },
 })

@@ -12,6 +12,7 @@
         <icon type="search" size="30" bindtap='search'></icon>
     </view>
 </view>
+
 <view class="history" wx:if="{{history}}">
   <view class="history_title">
     <text>历史搜索</text>

@@ -4,10 +4,10 @@
     "pages/search/search",
     "pages/me/me",
     "pages/test/test",
-    "pages/bookshelf/book1_juan/book1_juan",
-    "pages/bookshelf/book1_catalog/book1_catalog",
-    "pages/bookshelf/book1_content/book1_content",
-    "pages/bookshelf/book1_content_detail/book1_content_detail"
+    "pages/bookshelf/book_catalog/book_catalog",
+    "pages/bookshelf/book_content/book_content",
+    "pages/bookshelf/book_content_detail/book_content_detail",
+    "pages/bookshelf/book_juan/book_juan"
   ],
   "window": {
     "backgroundColor": "#F6F6F6",

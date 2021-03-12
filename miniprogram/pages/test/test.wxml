@@ -6,6 +6,9 @@
     <text bindtap="search">搜索</text>
   </view>
 </view>
+
+
+
 <view class="history" wx:if="{{history}}">
   <view class="history_title">
     <text>历史搜索</text>

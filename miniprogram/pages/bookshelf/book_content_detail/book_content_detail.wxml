@@ -1,0 +1,12 @@
+<!--pages/bookshelf/book_content_detail/book_content_detail.wxml-->
+<view wx:for="{{full_text}}" wx:key="item">
+  <view wx:if="{{item.tips}}">{{item.tips}}</view>
+  <view class="title"><text decode="{{true}}">&nbsp;&nbsp;&nbsp;&nbsp;{{item.original_text}}</text></view>
+  <view class="text-notes">{{item.note}}</view>
+</view>
+<view wx:for="{{fang}}" wx:key="item">
+  <view class="title">{{item.formula_name}}</view>
+  <view class="text-notes">{{item.composition}}</view>
+  <view class="text-notes">{{item.usage}}</view>
+  <view class="text-notes">{{item.note}}</view>
+</view>

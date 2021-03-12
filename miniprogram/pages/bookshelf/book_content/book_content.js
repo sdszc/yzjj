@@ -1,4 +1,4 @@
-// pages/bookshelf/bookshelf.js
+// pages/book_content/book_content.js
 const db = wx.cloud.database()
 Page({
 
@@ -6,24 +6,40 @@ Page({
    * 页面的初始数据
    */
   data: {
-    bookData: ''
+    text : ''
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
-   /**
-   * 生命周期函数--监听页面加载
-   */
   onLoad: function (options) {
-    db.collection('books')
-    .get()
-    .then(res=>{
-      // console.log(res.data)
-      this.setData({
-        bookData: res.data
-      })  
+    var thisid = parseInt(options.id)
+    // console.log(thisid)
+    wx.cloud.callFunction({
+      name: 'search',
+      data:{
+        data: thisid
+      },
+      success:res=>{
+        // console.log(res.result)
+        this.setData({
+          text: res.result.data
+        })
+      }
     })
+
+    // var thisid = parseInt(options.id)
+    // const _ = db.command
+    // db.collection('01part').where({
+    //   relateid: _.eq(thisid)
+    // })
+    // .get()
+    // .then(res=>{
+      
+    //     this.setData({
+    //       text: res.data
+    //     })
+    //   })
   },
 
   /**
@@ -65,7 +81,6 @@ Page({
    * 页面上拉触底事件的处理函数
    */
   onReachBottom: function () {
-
   },
 
   /**
@@ -73,12 +88,11 @@ Page({
    */
   onShareAppMessage: function () {
 
-  }
-  ,
-  //页面跳转
-  gotobook_juan:function(e){
+  },
+  // 页面跳转
+  gotobook_content_detail:function(e){
     wx.navigateTo({
-      url: '/pages/bookshelf/book_juan/book_juan?bookid='+ e.currentTarget.dataset.bookid
+      url: '/pages/bookshelf/book_content_detail/book_content_detail?id=' + e.currentTarget.dataset.id
     })
   },
 })

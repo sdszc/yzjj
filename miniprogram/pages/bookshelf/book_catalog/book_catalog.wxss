@@ -1,0 +1,16 @@
+/* pages/book1_catalog/book1_catalog.wxss */
+.btns {
+  margin-top: 10rpx;
+  margin-left: 10rpx;
+  margin-right: 10rpx;
+  margin-bottom: 10rpx;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: center;
+}
+.text-left{
+  text-align: left;
+  font-size: 35rpx;
+}
+
