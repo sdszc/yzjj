@@ -77,9 +77,9 @@ Page({
 
   },
   // 页面跳转
-  gotobook1_content:function(e){
+  gotobook_content:function(e){
     wx.navigateTo({
-      url: '/pages/bookshelf/book1_content/book1_content?id=' + e.currentTarget.dataset.id
+      url: '/pages/bookshelf/book_content/book_content?id=' + e.currentTarget.dataset.id
     })
   },
 })

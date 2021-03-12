@@ -1,6 +1,0 @@
-/* pages/bookshelf/book1_content_detail/book1_content_detail.wxss */
-.title{
-  font-size: 40rpx;
-  font-weight: 900;
-  margin:5px 5px 5px 5px;
-}

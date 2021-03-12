@@ -116,7 +116,7 @@ Page({
 
   },
   //页面跳转
-  gotobook1_cataglog:function(e){
+  gotobook_cataglog:function(e){
     wx.navigateTo({
       url: '/pages/bookshelf/book_catalog/book_catalog?volumeid=' + e.currentTarget.dataset.volumeid,
     })
