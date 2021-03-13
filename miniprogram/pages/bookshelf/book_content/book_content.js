@@ -18,7 +18,8 @@ Page({
     wx.cloud.callFunction({
       name: 'search',
       data:{
-        data: thisid
+        data_base: '01part',
+        id: thisid
       },
       success:res=>{
         // console.log(res.result)

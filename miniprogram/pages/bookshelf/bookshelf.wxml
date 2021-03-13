@@ -5,7 +5,7 @@
             <view class="weui-search-bar__form">
             <!-- 搜索框 -->
                 <view class="weui-search-bar__box">
-                    <input type="text" class="weui-search-bar__input" placeholder="请输入书名"  bindinput="booknameinput"/>
+                    <input type="text" class="weui-search-bar__input" value="{{bookname}}" placeholder="请输入书名"  bindinput="booknameinput"/>
                 </view>
             </view>
             <!-- 搜索按钮,调用搜索查询方法 -->
@@ -16,9 +16,9 @@
     </view>
 </view>
 
-<view class='container'>
+<view wx:if="{{bookData.length>0}}" class='container'>
   <!-- 书籍列表 -->
-  <block wx:for="{{bookData}}" wx:key="item">
+   <block wx:for="{{bookData}}" wx:key="item">
     <view class='card  b-shadow' bindtap='gotobook_juan' data-bookid="{{item.bookid}}">
       <view class='nearCard-fl'>
         <image src='{{item.img_path}}'></image>
@@ -34,7 +34,10 @@
         </view>
       </view>
     </view>
-  </block>
+  </block> 
 </view>
+<view wx:else>抱歉，暂无此书籍！</view>
+
+
 
 

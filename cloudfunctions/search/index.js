@@ -10,10 +10,13 @@ const $ = _.aggregate
 //云函数入口函数
 exports.main = async (event, context) => {
   try {
-    return await db.collection('01part').where({
-      relateid: _.eq(event.data)
-    })
-    .get()
+   if (event.id) {
+    return await db.collection(event.data_base).where({
+      relateid: _.eq(event.id)
+    }).get()
+   } else {
+    return await db.collection(event.data_base).get()
+   }  
   } catch (e) {
     console.error(e)
   }

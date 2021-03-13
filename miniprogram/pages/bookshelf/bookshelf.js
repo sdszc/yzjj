@@ -6,7 +6,9 @@ Page({
    * 页面的初始数据
    */
   data: {
-    bookData: ''
+    bookData: '',
+    bookname: '',
+    bookData_len: ''
   },
 
   /**
@@ -17,13 +19,47 @@ Page({
    */
   onLoad: function (options) {
     db.collection('books')
-    .get()
-    .then(res=>{
-      // console.log(res.data)
-      this.setData({
-        bookData: res.data
-      })  
+      .get()
+      .then(res=>{
+        // console.log(res.data)
+        this.setData({
+          bookData: res.data
+        })  
     })
+  },
+
+  booknameinput:function(e){
+    this.setData({
+      bookname: e.detail.value
+    })
+  },
+
+  // 输入书名查找
+  search: function(e){
+    var searchtext = this.data.bookname
+    const _ = db.command
+    // console.log(searchtext)
+    if (searchtext == '') {
+      db.collection('books')
+        .get()
+        .then(res=>{
+          this.setData({
+            bookData: res.data
+          })  
+        })
+    } else {
+      db.collection('books')
+      .where({
+        bookname: _.eq(searchtext)
+      })
+      .get()
+      .then(res=>{
+        // console.log(res.data)
+        this.setData({
+          bookData: res.data
+        })  
+      })
+    }
   },
 
   /**
