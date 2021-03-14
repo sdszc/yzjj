@@ -25,6 +25,29 @@
   background: #FFFFFF;
   border: 1rpx solid #E6E6EA;
 }
+.weui-search-bar__form {
+  position: relative;
+  -webkit-box-flex: 1;
+  -webkit-flex: auto;
+          flex: auto;
+  border-radius: 5px;
+  background: #FFFFFF;
+  border: 1rpx solid #E6E6EA;
+}
+.weui-search-bar__form_box {
+  position: relative;
+  width: 40px;
+  border-radius: 5px;
+  background: #FFFFFF;
+  border: 1rpx solid #E6E6EA;
+}
+.btn_clear {
+  position: absolute;
+  right: 0;
+  width: 25px;
+  height: 25px;
+  margin: 6px 5px 5px 5px;
+}
 .weui-search-bar__box {
   position: relative;
   padding-left: 10px;
@@ -38,6 +61,7 @@
   height: 100%;
   line-height: 100%;
   font-size: 14px;
+  width: 90%;
 }
 .nearCard-fl {
   width: 30%;
@@ -153,4 +177,7 @@
   margin-top: 5%;
   display: flex;
   align-items: center;
+}
+.view-box-btn-hover{
+  background-color: #87CEFF;
 }

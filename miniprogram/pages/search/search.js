@@ -147,5 +147,13 @@ Page({
    */
   onShareAppMessage: function () {
 
+  },
+  /**
+   * 清空搜索内容
+   */
+  cancel(){
+    this.setData({
+      contenttext: ''
+    })
   }
 })

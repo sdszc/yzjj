@@ -5,13 +5,16 @@
             <view class="weui-search-bar__form">
             <!-- 搜索框 -->
                 <view class="weui-search-bar__box">
-                    <input type="text" class="weui-search-bar__input" value="{{bookname}}" placeholder="请输入书名"  bindinput="booknameinput"/>
+                  <image class="btn_clear" src="/images/clear.png" mode="aspectFit" bindtap="cancel"></image>
+                  <input type="text" class="weui-search-bar__input" value="{{bookname}}" placeholder="请输入书名"  bindinput="booknameinput" bindconfirm="search"/>
                 </view>
             </view>
             <!-- 搜索按钮,调用搜索查询方法 -->
-            <view class="weui-icon-search_in-box">
-              <icon type="search" size="30" bindtap='search'></icon>
-            </view>
+            <view class="weui-search-bar__form_box" hover-class='view-box-btn-hover'>
+              <view class="weui-icon-search_in-box">
+                <icon type="search" size="30" bindtap='search'></icon>
+              </view>
+    </view>
         </view>
     </view>
 </view>

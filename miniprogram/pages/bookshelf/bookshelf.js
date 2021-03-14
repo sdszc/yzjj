@@ -117,4 +117,12 @@ Page({
       url: '/pages/bookshelf/book_juan/book_juan?bookid='+ e.currentTarget.dataset.bookid
     })
   },
+  /**
+   * 清空搜索内容
+   */
+  cancel(){
+    this.setData({
+      bookname: ''
+    })
+  }
 })
