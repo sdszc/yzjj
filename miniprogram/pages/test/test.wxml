@@ -1,14 +1,22 @@
-<view class="top">
-  <view class="topsearch">
-    <view class="frame">
-      <input value="{{shoopingtext}}" bindinput="shoppinginput"></input>
+<!--pages/search/search.wxml-->
+
+<view class="weui-search-bar">
+    <view class="weui-search-bar__form">
+    <!-- 搜索框 -->
+        <view class="weui-search-bar__box">
+          <image class="btn_clear" src="/images/clear.png" mode="aspectFit" bindtap="cancel"></image>
+          <input type="text" class="weui-search-bar__input" placeholder="全文搜索" value="{{contenttext}}" bindinput="contentinput" bindconfirm="search"></input>
+        </view>
     </view>
-    <text bindtap="search">搜索</text>
-  </view>
+    <!-- 搜索按钮,调用搜索查询方法 -->
+    <view class="weui-search-bar__form_box" hover-class='view-box-btn-hover'>
+      <view class="weui-icon-search_in-box">
+          <icon type="search" size="30" bindtap='search'></icon>
+      </view>
+    </view>
 </view>
 
-
-
+<!-- 历史搜索 -->
 <view class="history" wx:if="{{history}}">
   <view class="history_title">
     <text>历史搜索</text>
@@ -18,13 +26,15 @@
     <text wx:for="{{newArray}}" wx:key="key" data-text="{{item}}" bindtap="textfz">{{item}}</text>
   </view>
 </view>
+
+<!-- 内容显示 -->
 <view class="none" wx:if="{{noneview}}">
   <!-- <image src="/images/null.png" mode="widthFix" style="width:20%"></image> -->
   <text>抱歉，没有相关内容</text>
 </view>
-<view class='swiper_con' wx:if="{{shoppinglist}}">
-  <view class='swiper_con_view' wx:for="{{shoopingarray}}" wx:key="id" wx:if='{{item.status=="1"?true:false}}'>
-    <image src="{{item.images}}" mode="widthFix" style="width:100%" data-status="{{item.status}}"></image>
+<view class='swiper_con' wx:if="{{contentlist}}">
+  <view class='swiper_con_view' wx:for="{{contentarray}}" wx:key="id" wx:if='{{item.status=="1"?true:false}}'>
+    <!-- <image src="{{item.images}}" mode="widthFix" style="width:100%" data-status="{{item.status}}"></image>
     <view style="width:90%;margin:5%;">
       <text style="font-size:24rpx">{{item.title}}</text>
       <view class="swiper_con_view_view">
@@ -34,6 +44,7 @@
         </view>
         <image src="/images/cart.png" mode="widthFix" style="width:10%;position:relative;left:8%;"></image>
       </view>
-    </view>
+    </view> -->
+    <text>这个简写属性设置元素所有内边距的宽度，或者设置各边上内边距的宽度。行内非替换元素上设置的内边距不会影响行高计算；因此，如果一个元素既有内边距又有背景，从视觉上看可能会延伸到其他行，有可能还会与其他内容重叠。元素的背景会延伸穿过内边距。不允许指定负边距值</text>
   </view>
 </view>

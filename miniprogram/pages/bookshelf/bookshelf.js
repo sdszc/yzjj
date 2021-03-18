@@ -7,8 +7,7 @@ Page({
    */
   data: {
     bookData: '',
-    bookname: '',
-    bookData_len: ''
+    bookname: ''
   },
 
   /**
@@ -18,14 +17,17 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    db.collection('books')
-      .get()
-      .then(res=>{
-        // console.log(res.data)
-        this.setData({
-          bookData: res.data
-        })  
-    })
+     wx.cloud.callFunction({
+        name: 'search',
+        data:{
+          data_base: 'books',
+        },
+        success:res=>{
+          this.setData({
+            bookData: res.result.data
+          })
+        }
+      })
   },
 
   booknameinput:function(e){
@@ -40,17 +42,24 @@ Page({
     const _ = db.command
     // console.log(searchtext)
     if (searchtext == '') {
-      db.collection('books')
-        .get()
-        .then(res=>{
+      wx.cloud.callFunction({
+        name: 'search',
+        data:{
+          data_base: 'books',
+        },
+        success:res=>{
           this.setData({
-            bookData: res.data
-          })  
-        })
+            bookData: res.result.data
+          })
+        }
+      })
     } else {
       db.collection('books')
       .where({
-        bookname: _.eq(searchtext)
+        bookname:{
+          $regex:'.*'+ searchtext,
+          $options: 'i'
+        }
       })
       .get()
       .then(res=>{
@@ -120,9 +129,18 @@ Page({
   /**
    * 清空搜索内容
    */
-  cancel(){
-    this.setData({
-      bookname: ''
+  cancel:function(){
+    wx.cloud.callFunction({
+      name: 'search',
+      data:{
+        data_base: 'books',
+      },
+      success:res=>{
+        this.setData({
+          bookname: '',
+          bookData: res.result.data
+        })
+      }
     })
   }
 })
