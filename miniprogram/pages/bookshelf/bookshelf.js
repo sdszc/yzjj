@@ -7,7 +7,9 @@ Page({
    */
   data: {
     bookData: '',
-    bookname: ''
+    bookname: '',
+    start: false,
+    _error: '抱歉，暂无此书籍!'
   },
 
   /**
@@ -38,6 +40,10 @@ Page({
 
   // 输入书名查找
   search: function(e){
+    this.setData({
+      start: true,
+      _error: '抱歉，暂无此书籍!'
+    })
     var searchtext = this.data.bookname
     const _ = db.command
     // console.log(searchtext)
@@ -55,12 +61,22 @@ Page({
       })
     } else {
       db.collection('books')
-      .where({
-        bookname:{
-          $regex:'.*'+ searchtext,
-          $options: 'i'
-        }
-      })
+      .where(
+        _.or([
+          {
+            bookname:{
+              $regex:'.*'+ searchtext,
+              $options: 'i'
+            }
+          },
+          {
+            preface:{
+              $regex:'.*'+ searchtext,
+              $options: 'i'
+            }
+          }
+        ])
+      )
       .get()
       .then(res=>{
         // console.log(res.data)
@@ -138,7 +154,9 @@ Page({
       success:res=>{
         this.setData({
           bookname: '',
-          bookData: res.result.data
+          start: false,
+          bookData: res.result.data,
+          _error: ''
         })
       }
     })

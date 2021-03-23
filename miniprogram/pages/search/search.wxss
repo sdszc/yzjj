@@ -181,3 +181,11 @@
 .view-box-btn-hover{
   background-color: #87CEFF;
 }
+.searchHigh {
+  color: #f00;
+}
+.title{
+  font-size: 40rpx;
+  font-weight: 900;
+  margin:5px 5px 5px 5px;
+}

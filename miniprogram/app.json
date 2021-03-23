@@ -3,7 +3,6 @@
     "pages/bookshelf/bookshelf",
     "pages/search/search",
     "pages/me/me",
-    "pages/test/test",
     "pages/bookshelf/book_catalog/book_catalog",
     "pages/bookshelf/book_content/book_content",
     "pages/bookshelf/book_content_detail/book_content_detail",
@@ -38,13 +37,6 @@
       {
         "pagePath": "pages/me/me",
         "text": "我的",
-        "iconPath": "/images/me.png",
-        "selectedIconPath": "/images/me-selected.png"
-      }
-      ,
-      {
-        "pagePath": "pages/test/test",
-        "text": "test",
         "iconPath": "/images/me.png",
         "selectedIconPath": "/images/me-selected.png"
       }

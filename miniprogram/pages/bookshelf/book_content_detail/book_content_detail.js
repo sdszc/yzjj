@@ -27,20 +27,19 @@ Page({
         full_text: res.data
       })
       // console.log(res.data[0].formula_flag)
-      var data_element = typeof res.data[0].formula_flag
       var data = res.data[0].formula_flag
-      if (data_element == 'number') {
-        db.collection('02part').where({
-          id: _.eq(data)
-        })
-        .get()
-        .then(res=>{
-          this.setData({
-            fang: res.data
-          })
-        })
-       }
-      else {
+      // if (data_element == 'number' && data != 0) {
+      //   db.collection('02part').where({
+      //     id: _.eq(data)
+      //   })
+      //   .get()
+      //   .then(res=>{
+      //     this.setData({
+      //       fang: res.data
+      //     })
+      //   })
+      //  }
+       if (data != 0) {
         db.collection('02part').where({
           id: _.in(data)
         })

@@ -13,13 +13,25 @@ exports.main = async (event, context) => {
     return await db.collection(event.datasets).where(
       _.or([
         { 
-          note:db.RegExp({
+          formula_name:db.RegExp({
             regexp:'.*'+ event.search,
             options: 'i'
           })
         },
         {
-          original_text:db.RegExp({
+          composition:db.RegExp({
+            regexp:'.*'+ event.search,
+            options: 'i'
+          })
+        },
+        {
+          fy_note:db.RegExp({
+            regexp:'.*'+ event.search,  
+            options: 'i'
+          })
+        },
+        {
+          usage:db.RegExp({
             regexp:'.*'+ event.search,
             options: 'i'
           })
@@ -29,4 +41,4 @@ exports.main = async (event, context) => {
    } catch (e) {
      console.error(e)
    } 
-}
+}   

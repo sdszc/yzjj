@@ -1,4 +1,7 @@
 <!--pages/book1_content/book1_content.wxml-->
+<view wx:for="{{last_text}}" wx:key='item'>
+  <view wx:if="{{item.notes!=0}}">{{item.notes}}</view>   
+</view>
 <view wx:for="{{text}}" wx:key="item">
   <button style = 'width:100%' class='items' bindtap="gotobook_content_detail" data-id="{{item.id}}">{{item.original_text}}</button>
 </view>

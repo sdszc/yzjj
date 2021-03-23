@@ -6,7 +6,8 @@ Page({
    * 页面的初始数据
    */
   data: {
-    text : ''
+    text : '',
+    last_text: ''
   },
 
   /**
@@ -14,6 +15,7 @@ Page({
    */
   onLoad: function (options) {
     var thisid = parseInt(options.id)
+    const _ = db.command
     // console.log(thisid)
     wx.cloud.callFunction({
       name: 'search',
@@ -29,18 +31,19 @@ Page({
       }
     })
 
-    // var thisid = parseInt(options.id)
-    // const _ = db.command
-    // db.collection('01part').where({
-    //   relateid: _.eq(thisid)
-    // })
-    // .get()
-    // .then(res=>{
-      
-    //     this.setData({
-    //       text: res.data
-    //     })
-    //   })
+    // console.log(thisid)
+    db.collection('items')
+    .where({
+      id: _.eq(thisid)
+    })
+    .get()
+    .then(res=>{
+      // console.log(res.data)
+      this.setData({
+        last_text: res.data
+      })
+    })
+    
   },
 
   /**

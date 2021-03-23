@@ -5,7 +5,7 @@
     <!-- 搜索框 -->
         <view class="weui-search-bar__box">
           <image class="btn_clear" src="/images/clear.png" mode="aspectFit" bindtap="cancel"></image>
-          <input type="text" class="weui-search-bar__input" placeholder="请输入要搜索的关键词" value="{{contenttext}}" bindinput="contentinput" bindconfirm="search"></input>
+          <input type="text" class="weui-search-bar__input" placeholder="请输入要搜索的关键词" value="{{contenttext}}"  bindinput="contentinput"  bindconfirm="search"></input>
         </view>
     </view>
     <!-- 搜索按钮,调用搜索查询方法 -->
@@ -17,27 +17,31 @@
 </view>
 
 <!-- 历史搜索 -->
-<view class="history">
-  <view class="history_title">
-    <text>历史搜索</text>
-    <image src="/images/delete.png" mode="widthFix" style="width:5%;" bindtap="cleanhistory"></image>
+<view wx:if="{{status}}">
+  <!-- 内容显示 -->
+  <view wx:if="{{(result_ll.length + result_fy.length)==0}}">{{_error}}</view>
+  <view wx:else>为您找到相关结果{{result_ll.length+result_fy.length}}条</view>
+  <view wx:for="{{result_ll}}" wx:key="item">
+    <view class="title"><text wx:for="{{item.original_text}}" wx:key="item" class="{{item == contenttext ? 'searchHigh' : '' }}">{{item}}</text></view>
+    <view><text wx:for="{{item.note}}" wx:key="item" class="{{item == contenttext ? 'searchHigh' : '' }}">{{item}}</text></view>
+    <view>-------------------------------------------</view>
   </view>
-  <view class="history_text">
-    <text wx:for="{{search_history}}" wx:key="key" data-text="{{item}}" bindtap="history_push">{{item}}</text>
+  <view wx:for="{{result_fy}}" wx:key="item">
+    <view class="title"><text wx:for="{{item.formula_name}}" wx:key="item" class="{{item == contenttext ? 'searchHigh' : '' }}">{{item}}</text></view>
+    <view><text wx:for="{{item.composition}}" wx:key="item" class="{{item == contenttext ? 'searchHigh' : '' }}">{{item}}</text></view>
+    <view><text wx:for="{{item.usage}}" wx:key="item" class="{{item == contenttext ? 'searchHigh' : '' }}">{{item}}</text></view>
+    <view><text wx:for="{{item.fy_note}}" wx:key="item" class="{{item == contenttext ? 'searchHigh' : '' }}">{{item}}</text></view>
+    <view>-------------------------------------------</view>
   </view>
 </view>
-
-<!-- 内容显示 -->
-<view class='swiper_con'>
-  <view class='swiper_con_view' wx:for="{{contentarray}}" wx:key="item">
-    <!-- <view style="width:90%;margin:5%;">
-      <text style="font-size:24rpx">{{item.title}}</text>
-      <view class="swiper_con_view_view">
-        <view style="width:80%;">
-          <text style="font-size:24rpx;color:red;">{{item.money}}</text>
-          <text style="font-size:18rpx;color:#B8B8B8;margin-left:5%;">已售{{item.sold}}</text>
-        </view>
-      </view>
-    </view>  -->
+<view wx:if="{{start==false&status==false}}">
+  <view class="history">
+    <view class="history_title">
+      <text>历史搜索</text>
+      <image src="/images/delete.png" mode="widthFix" style="width:5%;" bindtap="cleanhistory"></image>
+    </view>
+    <view class="history_text">
+      <text wx:for="{{search_history}}" wx:key="key" data-text="{{item}}" bindtap="history_push">{{item}}</text>
+    </view>
   </view>
 </view>
