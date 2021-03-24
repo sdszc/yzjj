@@ -1,9 +1,9 @@
 <!--pages/bookshelf/book1_juan/book1_juan.wxml-->
 <view wx:for="{{preface}}" wx:key="item">
-  <view wx:if="{{item.preface}}" class="text-preface"><text decode="{{true}}">&nbsp;&nbsp;&nbsp;&nbsp;{{item.preface}}</text></view>
+  <view wx:if="{{item.preface}}" class="text-preface text_font"><text decode="{{true}}">&nbsp;&nbsp;&nbsp;&nbsp;{{item.preface}}</text></view>
 </view>
 <view class="btns">
   <view wx:for="{{juan_name}}" wx:key="item" class="btn_box">
-    <view class="text-left" bindtap="gotobook_cataglog"  data-volumeid="{{item.volumeid}}">{{item._id}}</view>
+    <view class="text-left text_juan" bindtap="gotobook_cataglog"  data-volumeid="{{item.volumeid}}">{{item._id}}</view>
   </view>
 </view>

@@ -2,3 +2,8 @@
 .font900{
   font-weight: 900
 }
+.text_juan{
+  font-size: 20px;
+  text-align: left;
+  margin: 10px 5px 5px 5px;
+}

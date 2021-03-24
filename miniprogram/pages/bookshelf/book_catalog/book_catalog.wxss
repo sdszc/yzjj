@@ -13,4 +13,8 @@
   text-align: left;
   font-size: 35rpx;
 }
+.text_juan{
+  font-size: 18px;
+  align-items: center;
+}
 

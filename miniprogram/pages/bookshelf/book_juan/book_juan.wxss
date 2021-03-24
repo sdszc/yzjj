@@ -20,3 +20,9 @@
   width: 140px;
   font-size: 20px;
 }
+.text_font{
+  font-size: 18px;
+}
+.text_juan{
+  font-size: 16px;
+}

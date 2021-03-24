@@ -1,4 +1,4 @@
 <!--pages/book1_catalog/book1_catalog.wxml-->
 <view wx:for="{{title_name}}" wx:key="item">
-  <button style = 'width:100%' class='items' bindtap="gotobook_content" data-id="{{item.id}}">{{item.titlename}}</button>
+  <button style = 'width:100%' class='items text_juan' bindtap="gotobook_content" data-id="{{item.id}}">{{item.titlename}}</button>
 </view>
