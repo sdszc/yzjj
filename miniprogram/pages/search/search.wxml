@@ -21,16 +21,16 @@
 <view wx:if="{{status}}">
   <!-- 内容显示 -->
   <view wx:if="{{(result_ll.length + result_fy.length)==0}}">{{_error}}</view>
-  <view wx:else>为您找到相关结果{{result_ll.length+result_fy.length}}条</view>
-  <view wx:for="{{result_ll}}" wx:key="item" class="search_card  b-shadow text_small_1" bindtap='gotoSearch_detail'>
-    <view class="title"><text wx:for="{{item.original_text}}" wx:key="item" class="{{item == contenttext ? 'searchHigh' : '' }}">{{item}}</text></view>
-    <view class="fulltext"><text wx:for="{{item.note}}" wx:key="item" class="{{item == contenttext ? 'searchHigh' : '' }}">{{item}}</text></view>
+  <view wx:else style="margin-left:10px;">为您找到相关结果{{result_ll.length+result_fy.length}}条</view>
+  <view wx:for="{{result_ll}}" wx:key="item" class="search_card  b-shadow" bindtap='gotoSearch_detail'>
+    <view class="title text_small_1"><text wx:for="{{item.original_text}}" wx:key="item" class="{{item == contenttext ? 'searchHigh' : '' }}">{{item}}</text></view>
+    <view class="fulltext text_small_2"><text wx:for="{{item.note}}" wx:key="item" class="{{item == contenttext ? 'searchHigh' : '' }}">{{item}}</text></view>
   </view>
-  <view wx:for="{{result_fy}}" wx:key="item" class="search_card  b-shadow text_small_1" bindtap='gotoSearch_detail'>
-    <view class="title"><text wx:for="{{item.formula_name}}" wx:key="item" class="{{item == contenttext ? 'searchHigh' : '' }}">{{item}}</text></view>
-    <view><text wx:for="{{item.composition}}" wx:key="item" class="{{item == contenttext ? 'searchHigh' : '' }}">{{item}}</text></view>
-    <view><text wx:for="{{item.usage}}" wx:key="item" class="{{item == contenttext ? 'searchHigh' : '' }}">{{item}}</text></view>
-    <view><text wx:for="{{item.fy_note}}" wx:key="item" class="{{item == contenttext ? 'searchHigh' : '' }}">{{item}}</text></view>
+  <view wx:for="{{result_fy}}" wx:key="item" class="search_card  b-shadow" bindtap='gotoSearch_detail'>
+    <view class="title  text_small_1"><text wx:for="{{item.formula_name}}" wx:key="item" class="{{item == contenttext ? 'searchHigh' : '' }}">{{item}}</text></view>
+    <view class="fulltext text_small_1"><text wx:for="{{item.composition}}" wx:key="item" class="{{item == contenttext ? 'searchHigh' : '' }}">{{item}}</text></view>
+    <view class="fulltext text_small_1"><text wx:for="{{item.usage}}" wx:key="item" class="{{item == contenttext ? 'searchHigh' : '' }}">{{item}}</text></view>
+    <view class="fulltext text_small_1"><text wx:for="{{item.fy_note}}" wx:key="item" class="{{item == contenttext ? 'searchHigh' : '' }}">{{item}}</text></view>
   </view>
 </view>
 <!-- 历史搜索 -->

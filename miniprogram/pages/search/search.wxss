@@ -190,7 +190,7 @@
   color: #3366cc;
 }
 .fulltext{
-  font-size: 14px;
+  font-size: 16px;
 }
   .topnav{
     position: fixed;
@@ -202,14 +202,23 @@
   display: -webkit-box;
   -webkit-box-orient: vertical;
   word-break: break-all;
-  -webkit-line-clamp: 5;
+  -webkit-line-clamp: 1;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.text_small_2 {
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  word-break: break-all;
+  -webkit-line-clamp: 3;
   overflow: hidden;
   text-overflow: ellipsis;
 }
 .search_card {
   width: 95%;
-  height: 111px;
+  height: 100%;
   background-color: #fff;
   margin: 20rpx auto 0;
   border-radius: 20rpx;
+  margin-top:13px;
 }
