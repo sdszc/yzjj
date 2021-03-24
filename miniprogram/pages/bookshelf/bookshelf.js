@@ -160,5 +160,27 @@ Page({
         })
       }
     })
-  }
+  },
+  /**
+   * 顶部固定
+   */
+  //页面滚动监听
+ //页面滚动监听
+ onPageScroll: function (e) {
+  let vm = this;
+  var query = wx.createSelectorQuery()
+  query.select('#location_id').boundingClientRect()
+  query.selectViewport().scrollOffset()
+  query.exec(function (res) {
+    if (res[0].top < 0){  //res[0].top为location_id距离顶部的位置
+      vm.setData({
+        hideTop: true
+      })
+    }else{
+      vm.setData({
+        hideTop: false
+      })
+    }
+  })
+},
 })

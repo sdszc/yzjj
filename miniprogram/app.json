@@ -6,7 +6,8 @@
     "pages/bookshelf/book_catalog/book_catalog",
     "pages/bookshelf/book_content/book_content",
     "pages/bookshelf/book_content_detail/book_content_detail",
-    "pages/bookshelf/book_juan/book_juan"
+    "pages/bookshelf/book_juan/book_juan",
+    "pages/search/search_detail/search_detail"
   ],
   "window": {
     "backgroundColor": "#F6F6F6",

@@ -10,8 +10,9 @@ Page({
     result_fy : [],
     status: false, //搜索是否完成
     start: false, //搜索是否开始
-    _error: '未找到相关内容'
+    _error: '未找到相关内容',
     // result_all : []
+    isSearch: false, // 默认没有搜索
   },
 
   //当前搜索框的值
@@ -46,9 +47,11 @@ Page({
   
   //搜索
   search: async function(e) {
+    var bol = this.data.isSearch; // 获取状态
     this.setData({
       start: true,
-      _error: '未找到相关内容'
+      _error: '未找到相关内容',
+      isSearch:!bol // 改变状态
     })
     wx.showLoading({
       title: '加载中',
@@ -230,5 +233,33 @@ Page({
       status: false, 
       start: false,
     })
-  }
+  },
+  /**
+   * 顶部固定
+   */
+  //页面滚动监听
+ //页面滚动监听
+ onPageScroll: function (e) {
+  let vm = this;
+  var query = wx.createSelectorQuery()
+  query.select('#location_id').boundingClientRect()
+  query.selectViewport().scrollOffset()
+  query.exec(function (res) {
+    if (res[0].top < 0){  //res[0].top为location_id距离顶部的位置
+      vm.setData({
+        hideTop: true
+      })
+    }else{
+      vm.setData({
+        hideTop: false
+      })
+    }
+  })
+},
+//页面跳转
+gotoSearch_detail:function(e){
+  wx.navigateTo({
+    url: '/pages/search/search_detail/search_detail'
+  })
+},
 })

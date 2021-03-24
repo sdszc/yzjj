@@ -1,7 +1,7 @@
 <!--pages/bookshelf/bookshelf.wxml-->
 <view>
-  <view>
-        <view class="weui-search-bar">
+  <view id='location_id'>
+        <view class="weui-search-bar {{ hideTop == true ? 'topnav' : '' }}">
             <view class="weui-search-bar__form">
             <!-- 搜索框 -->
                 <view class="weui-search-bar__box">

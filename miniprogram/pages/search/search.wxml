@@ -1,6 +1,7 @@
 <!--pages/search/search.wxml-->
 
-<view class="weui-search-bar">
+<view id='location_id'></view>
+<view class="weui-search-bar {{ hideTop == true ? 'topnav' : '' }}">
     <view class="weui-search-bar__form">
     <!-- 搜索框 -->
         <view class="weui-search-bar__box">
@@ -16,24 +17,23 @@
     </view>
 </view>
 
-<!-- 历史搜索 -->
+
 <view wx:if="{{status}}">
   <!-- 内容显示 -->
   <view wx:if="{{(result_ll.length + result_fy.length)==0}}">{{_error}}</view>
   <view wx:else>为您找到相关结果{{result_ll.length+result_fy.length}}条</view>
-  <view wx:for="{{result_ll}}" wx:key="item">
+  <view wx:for="{{result_ll}}" wx:key="item" class="search_card  b-shadow text_small_1" bindtap='gotoSearch_detail'>
     <view class="title"><text wx:for="{{item.original_text}}" wx:key="item" class="{{item == contenttext ? 'searchHigh' : '' }}">{{item}}</text></view>
-    <view><text wx:for="{{item.note}}" wx:key="item" class="{{item == contenttext ? 'searchHigh' : '' }}">{{item}}</text></view>
-    <view>-------------------------------------------</view>
+    <view class="fulltext"><text wx:for="{{item.note}}" wx:key="item" class="{{item == contenttext ? 'searchHigh' : '' }}">{{item}}</text></view>
   </view>
-  <view wx:for="{{result_fy}}" wx:key="item">
+  <view wx:for="{{result_fy}}" wx:key="item" class="search_card  b-shadow text_small_1" bindtap='gotoSearch_detail'>
     <view class="title"><text wx:for="{{item.formula_name}}" wx:key="item" class="{{item == contenttext ? 'searchHigh' : '' }}">{{item}}</text></view>
     <view><text wx:for="{{item.composition}}" wx:key="item" class="{{item == contenttext ? 'searchHigh' : '' }}">{{item}}</text></view>
     <view><text wx:for="{{item.usage}}" wx:key="item" class="{{item == contenttext ? 'searchHigh' : '' }}">{{item}}</text></view>
     <view><text wx:for="{{item.fy_note}}" wx:key="item" class="{{item == contenttext ? 'searchHigh' : '' }}">{{item}}</text></view>
-    <view>-------------------------------------------</view>
   </view>
 </view>
+<!-- 历史搜索 -->
 <view wx:if="{{start==false&status==false}}">
   <view class="history">
     <view class="history_title">

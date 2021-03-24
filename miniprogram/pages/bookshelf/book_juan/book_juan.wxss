@@ -1,12 +1,22 @@
 /* pages/bookshelf/book1_juan/book1_juan.wxss */
 .btns {
-  margin-top: 10rpx;
+  margin-top: 10px;
+  margin-left: 10px;
+  margin-right: 10px;
+  width: 100%;
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
-  justify-content: space-around;
-  align-items: center;
+  zoom: 1;
+  justify-content: space-between;
+}
+.btn_box{
+  width: 140px;
+  height: 35px;
+  float: left;
 }
 .text-left{
   text-align: left;
+  width: 140px;
+  font-size: 20px;
 }
