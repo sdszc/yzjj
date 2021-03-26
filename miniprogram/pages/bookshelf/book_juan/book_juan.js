@@ -19,7 +19,7 @@ Page({
     const _ = db.command
     const $ = db.command.aggregate
     db.collection('items').aggregate()
-    .match({
+    .match({ 
       bookid: _.eq(thisbookid)
     })
     .group({

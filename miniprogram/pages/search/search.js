@@ -20,7 +20,9 @@ Page({
     this.setData({
       contenttext: e.detail.value,
       result_ll : [],
-      result_fy : []
+      result_fy : [],
+      start: false,
+      status: false
     })
   },
 
@@ -95,11 +97,12 @@ Page({
       }
     }) 
 
-    let ll = (await result1).result.data
-    let fy = (await result2).result.data
+    let ll = (await result1).result
+    let fy = (await result2).result
 
     // console.log(ll)
     // console.log(fy)
+
 
     ll.forEach(element => {
       var note = this.getHilightStrArray(element.note, searchtext)
@@ -123,7 +126,7 @@ Page({
     this.setData({
       result_ll: ll,
       result_fy: fy,
-      status: true
+      status: true,
     })
     if(this.data.status){
       wx.hideLoading()
@@ -257,9 +260,14 @@ Page({
   })
 },
 //页面跳转
-gotoSearch_detail:function(e){
+gotoSearch_detail_ll:function(e){
   wx.navigateTo({
-    url: '/pages/search/search_detail/search_detail'
+    url: '/pages/search/search_detail/search_detail?id=' + e.currentTarget.dataset.id + "&text=" + e.currentTarget.dataset.text
+  })
+},
+gotoSearch_detail_fy:function(e){
+  wx.navigateTo({
+    url: '/pages/search/search_detail/search_detail?fyid=' + e.currentTarget.dataset.fyid + "&text=" + e.currentTarget.dataset.text
   })
 },
 })

@@ -5,5 +5,5 @@
 <view class="btns">
   <view wx:for="{{juan_name}}" wx:key="item" class="btn_box">
     <view class="text-left text_juan" bindtap="gotobook_cataglog"  data-volumeid="{{item.volumeid}}">{{item._id}}</view>
-  </view>
+  </view> 
 </view>

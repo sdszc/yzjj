@@ -1,2 +1,24 @@
 <!--pages/search/search_detail/search_detail.wxml-->
-<text>pages/search/search_detail/search_detail.wxml</text>
+<view wx:for="{{zheng}}" wx:key="item">
+  <!-- <view class="title" wx:if="{{item.tips}}" class="{{item == searchtext ? 'searchHigh' : '' }}">{{item.tips}}</view> -->
+  <view class="title">
+    <text wx:for="{{item.original_text}}" wx:key="item" decode="{{true}}" class="{{item == searchtext ? 'searchHigh' : '' }}">{{item}}</text>
+  </view>
+  <view class="text-notes" class="{{item == searchtext ? 'searchHigh' : '' }}">
+    <text wx:for="{{item.note}}" wx:key="item" class="{{item == searchtext ? 'searchHigh' : '' }}">{{item}}</text>
+  </view>
+</view>
+<view wx:for="{{fang}}" wx:key="item">
+  <view class="title">
+    <text wx:for="{{item.formula_name}}" wx:key="item" decode="{{true}}" class="{{item == searchtext ? 'searchHigh' : '' }}">{{item}}</text>
+  </view>
+  <view class="text-notes">
+    <text wx:for="{{item.composition}}" wx:key="item" class="{{item == searchtext ? 'searchHigh' : '' }}">{{item}}</text>
+  </view>
+  <view class="text-notes">
+    <text wx:for="{{item.usage}}" wx:key="item" class="{{item == searchtext ? 'searchHigh' : '' }}">{{item}}</text>
+  </view>
+  <view class="text-notes">
+    <text wx:for="{{item.fy_note}}" wx:key="item" class="{{item == searchtext ? 'searchHigh' : '' }}">{{item}}</text>
+  </view>
+</view>
