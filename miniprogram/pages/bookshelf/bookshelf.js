@@ -8,7 +8,9 @@ Page({
   data: {
     bookData: '',
     bookname: '',
+    show: 'true',
     start: false,
+    status: false,
     _error: '抱歉，暂无此书籍!'
   },
 
@@ -19,6 +21,9 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+    this.setData({
+      show: true
+    })
      wx.cloud.callFunction({
         name: 'search',
         data:{
@@ -34,34 +39,42 @@ Page({
 
   booknameinput:function(e){
     this.setData({
-      bookname: e.detail.value
+      bookname: e.detail.value,
+      start: false,
+      status: false,
     })
   },
 
   // 输入书名查找
-  search: function(e){
+  search:async function(e){
     this.setData({
+      bookData: '',
       start: true,
+      status: false,
+      show: false,
       _error: '抱歉，暂无此书籍!'
     })
+    wx.showLoading({
+      title: '加载中',
+    });
     var searchtext = this.data.bookname
     const _ = db.command
     // console.log(searchtext)
-    if (searchtext == '') {
-      wx.cloud.callFunction({
-        name: 'search',
-        data:{
-          data_base: 'books',
-        },
-        success:res=>{
-          this.setData({
-            bookData: res.result.data
-          })
-        }
+    if (searchtext.replace(/\s+/g,'').length==0) {
+      // const thisbook = wx.cloud.callFunction({
+      //   name: 'search',
+      //   data:{
+      //     data_base: 'books',
+      //   }
+      // })
+      // console.log((await thisbook).result)
+      this.setData({
+          _error: '请输入搜索内容!',
+          status: true,
+          show: true
       })
     } else {
-      db.collection('books')
-      .where(
+      const thisbook = db.collection('books').where(
         _.or([
           {
             bookname:{
@@ -76,15 +89,21 @@ Page({
             }
           }
         ])
-      )
-      .get()
-      .then(res=>{
-        // console.log(res.data)
-        this.setData({
-          bookData: res.data
-        })  
+      ).get()
+      // console.log((await thisbook).data)
+      this.setData({
+        bookData:(await thisbook).data,
+        status: true,
+        show: true
       })
     }
+    // console.log(this.data.bookData)
+
+
+    if(this.data.status){
+      wx.hideLoading()
+    }
+    
   },
 
   /**

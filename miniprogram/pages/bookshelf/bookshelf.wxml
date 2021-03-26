@@ -19,7 +19,7 @@
     </view>
 </view>
 
-<view wx:if="{{bookData.length}}" class='container'>
+<view wx:if="{{bookData.length>0&show}}" class='container'>
   <!-- 书籍列表 -->
    <block wx:for="{{bookData}}" wx:key="item">
     <view class='card  b-shadow' bindtap='gotobook_juan' data-bookid="{{item.bookid}}">
@@ -39,7 +39,7 @@
     </view>
   </block> 
 </view>
-<view wx:if="{{start}}">{{_error}}</view>
+<view wx:if="{{start==true&status==true&bookData.length==0}}">{{_error}}</view>
 
 
 

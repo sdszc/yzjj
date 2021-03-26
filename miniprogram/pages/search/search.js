@@ -53,7 +53,7 @@ Page({
     this.setData({
       start: true,
       _error: '未找到相关内容',
-      isSearch:!bol // 改变状态
+      isSearch:true // 改变状态
     })
     wx.showLoading({
       title: '加载中',
@@ -78,8 +78,13 @@ Page({
       confirm: false
     })
 
-
-    // 搜索
+    if (searchtext.replace(/\s+/g,'').length==0) {
+      this.setData({
+        _error: '请输入搜索内容!',
+        status: true
+      })
+    } else {
+      // 搜索
     const _ = db.command
     const result1 = wx.cloud.callFunction({
       name: 'fuzzy_search',
@@ -128,6 +133,10 @@ Page({
       result_fy: fy,
       status: true,
     })
+      
+    }
+
+    
     if(this.data.status){
       wx.hideLoading()
     }
