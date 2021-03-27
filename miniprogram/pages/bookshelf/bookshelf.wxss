@@ -65,7 +65,7 @@
   height: 100%;
   margin-left: 30%;
   margin-top: 15rpx;
-  color: #999;
+  color: black;
 }
 
 .nearCard-fr text {

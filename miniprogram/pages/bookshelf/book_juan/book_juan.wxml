@@ -1,6 +1,6 @@
 <!--pages/bookshelf/book1_juan/book1_juan.wxml-->
 <view wx:for="{{preface}}" wx:key="item">
-  <view wx:if="{{item.preface}}" class="text-preface text_font"><text decode="{{true}}">&nbsp;&nbsp;&nbsp;&nbsp;{{item.preface}}</text></view>
+  <view wx:if="{{item.preface}}" class="text-preface text_font" style="text-indent:2em;" hover-class='view-box-btn-hover'><text decode="{{true}}">{{item.preface}}</text></view>
 </view>
 <view class="btns">
   <view wx:for="{{juan_name}}" wx:key="item" class="btn_box">

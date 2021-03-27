@@ -7,29 +7,29 @@
   </view>
 </view>
 <view class='base-padding row base-info'>
-  <navigator url="{{user.uid>0? '/pages/ucenter/ucenter?tab=release':'/pages/login/login'}}" class='col-12'>
+  <navigator url="{{user.uid>0? '/pages/ucenter/ucenter?tab=release':'/pages/login/login'}}" class='col-12' bindtap="showMessage">
     <image src='/images/book.png' class="pull-left"></image>我的发布
     <image class='pull-right' src='/images/right-angle.png'></image>
   </navigator>
-  <navigator url='{{user.uid>0?"/pages/ucenter/ucenter?tab=star":"/pages/login/login"}}' class='col-12'>
+  <navigator url='{{user.uid>0?"/pages/ucenter/ucenter?tab=star":"/pages/login/login"}}' class='col-12' bindtap="showMessage">
     <image src='/images/star.png' class="pull-left"></image>
     我的收藏
     <image class='pull-right' src='/images/right-angle.png'></image>
   </navigator>
-  <navigator url='{{user.uid>0?"/pages/ucenter/ucenter?tab=follow":"/pages/login/login"}}' class='col-12'>
+  <navigator url='{{user.uid>0?"/pages/ucenter/ucenter?tab=follow":"/pages/login/login"}}' class='col-12' bindtap="showMessage">
     <image src='/images/follow.png' class="pull-left"></image>
     我的关注
     <image class='pull-right' src='/images/right-angle.png'></image>
   </navigator>
-  <navigator url='{{user.uid>0?"/pages/ucenter/ucenter?tab=fans":"/pages/login/login"}}' class='col-12'>
+  <navigator url='{{user.uid>0?"/pages/ucenter/ucenter?tab=fans":"/pages/login/login"}}' class='col-12' bindtap="showMessage">
     <image src='/images/fans.png' class="pull-left"></image>
     我的粉丝
     <image class='pull-right' src='/images/right-angle.png'></image>
   </navigator>
 </view>
 
-<view class='base-padding row base-info' bindtap="drawPoster">
-  <view class='col-12'>
+<view class='base-padding row base-info'>
+  <view class='col-12' bindtap="showMessage">
     <image src='/images/share.png' class="pull-left"></image>
     分享到朋友圈
     <image class='pull-right' src='/images/right-angle.png'></image>
@@ -37,35 +37,11 @@
 </view>
 
 <view wx:if="{{info.about}}" class='base-padding row base-info'>
-  <navigator url='/pages/read/read?identify={{info.about}}' class='col-12'>
+  <navigator url='/pages/read/read?identify={{info.about}}' class='col-12' bindtap="showMessage">
     <image src='/images/about-us.png' class="pull-left"></image>
     关于我们
     <image class='pull-right' src='/images/right-angle.png'></image>
   </navigator>
-</view>
-
-<view class='base-padding row base-info'>
-  <view wx:if="{{user.uid>0}}" bindtap='logout' class='col-12'>
-    <image src='/images/login.png' class="pull-left"></image>
-    退出登录
-    <image class='pull-right' src='/images/right-angle.png'></image>
-  </view>
-</view>
-
-<!-- 分享容器 -->
-<view wx:if="{{showSharePoster}}" class="share-container">
-  <image wx:if="{{shareImage}}" src="{{shareImage}}" class="share-image"></image>
-  <block wx:else>
-    <canvasdrawer painting="{{painting}}" class="canvasdrawer" bind:getImage="showPoster" />
-  </block>
-  <view wx:if="{{shareImage}}" class="row btns font-lv2">
-      <view class="col close-image">
-        <text bindtap="closePoster" class="color-red">关闭</text>
-      </view>
-      <view class="col save-image">
-        <text bindtap="savePoster" class="color-green">保存到本地</text>
-      </view>
-    </view>
 </view>
 
 <view class='base-padding row base-info'>

@@ -1,7 +1,6 @@
 // pages/book1_catalog/book1_catalog.js
 const db = wx.cloud.database()
 Page({
-
   /**
    * 页面的初始数据
    */
