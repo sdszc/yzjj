@@ -23,43 +23,58 @@ Page({
    */
   onLoad: function (options) {
     var thisid = parseInt(options.id)
+    var thisfyid = parseInt(options.fyid)
+    // console.log(thisfyid)
     const _ = db.command
     const $ = db.command.aggregate
-    db.collection('01part').where({
-      id: _.eq(thisid)
-    })
-    .get()
-    .then(res=>{
-      // console.log(res.data)
-      this.setData({
-        full_text: res.data
+    if (thisid) {
+      db.collection('01part').where({
+        id: _.eq(thisid)
       })
-      // console.log(res.data[0].formula_flag)
-      var data = res.data[0].formula_flag
-      // if (data_element == 'number' && data != 0) {
-      //   db.collection('02part').where({
-      //     id: _.eq(data)
-      //   })
-      //   .get()
-      //   .then(res=>{
-      //     this.setData({
-      //       fang: res.data
-      //     })
-      //   })
-      //  }
-       if (data != 0) {
-        db.collection('02part').where({
-          id: _.in(data)
+      .get()
+      .then(res=>{
+        // console.log(res.data)
+        this.setData({
+          full_text: res.data
         })
-        .get()
-        .then(res=>{
-          this.setData({
-            fang: res.data
+        // console.log(res.data[0].formula_flag)
+        var data = res.data[0].formula_flag
+        // if (data_element == 'number' && data != 0) {
+        //   db.collection('02part').where({
+        //     id: _.eq(data)
+        //   })
+        //   .get()
+        //   .then(res=>{
+        //     this.setData({
+        //       fang: res.data
+        //     })
+        //   })
+        //  }
+         if (data != 0) {
+          db.collection('02part').where({
+            id: _.in(data)
           })
+          .get()
+          .then(res=>{
+            this.setData({
+              fang: res.data
+            })
+          })
+        }  
+      })
+    } else {
+      db.collection('02part').where({
+        id: _.eq(thisfyid)
+      })
+      .get()
+      .then(res=>{
+        this.setData({
+          fang: res.data
         })
-      }
+      })
       
-    })
+    }
+   
     // 获取购物车控件适配参数
  var that =this;
  wx.getSystemInfo({

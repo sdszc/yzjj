@@ -69,8 +69,7 @@ Page({
           console.log(e.message)
         }
       }
-      // console.log(this.data.zheng)
-      } 
+    } 
     else {
       const thiszheng = db.collection('01part').where({
         id: _.eq(llid)
@@ -81,10 +80,9 @@ Page({
       })
     } 
 
-    var data_ll = this.data.zheng[0].formula_flag
-    // console.log(this.data.zheng[0])
-    // console.log(data_ll)
-    if (data_ll != 0) {
+    if (this.data.zheng.length!=0) {
+      var data_ll = this.data.zheng[0].formula_flag
+      if (data_ll != 0) {
        const thisfang =  db.collection('02part').where({
           id: _.in(data_ll)
         })
@@ -93,31 +91,60 @@ Page({
           fang: (await thisfang).data
         })
       } 
+    } else {
+      const thisfang =  db.collection('02part').where({
+        id: _.eq(fyid)
+      })
+      .get()
+      this.setData({
+        fang: (await thisfang).data
+      })
+    }
+    
       
-  //   console.log(this.data.zheng)
     var this_z = this.data.zheng
     var this_f = this.data.fang
     if(this_z){
       this_z.forEach(element => {
-        var note = this.getHilightStrArray(element.note, search)
-        element.note = note
-        var original_text = this.getHilightStrArray(element.original_text, search)
-        element.original_text = original_text
+        if(element.tips!=0){
+          var tips = this.getHilightStrArray(element.tips, search)
+          element.tips = tips
+        }
+        if(element.original_text!=0){
+          var original_text = this.getHilightStrArray(element.original_text, search)
+          element.original_text = original_text
+        }
+        if(element.note!=0){
+          var note = this.getHilightStrArray(element.note, search)
+          element.note = note
+        }
       })
-   }
+    }
     
     if(this_f){
       this_f.forEach(element => {
         var formula_name = this.getHilightStrArray(element.formula_name, search)
         element.formula_name = formula_name  
+        if(element.introduction!=0){
+          var introduction = this.getHilightStrArray(element.introduction, search)
+          element.introduction = introduction
+        }
         if(element.composition!=0){
           var composition = this.getHilightStrArray(element.composition, search)
           element.composition = composition
         }
-        var usage = this.getHilightStrArray(element.usage, search)
-        element.usage = usage  
-        var fy_note = this.getHilightStrArray(element.fy_note, search)
-        element.fy_note = fy_note
+        if(element.usage!=0){
+          var usage = this.getHilightStrArray(element.usage, search)
+          element.usage = usage
+        }
+        if(element.fy_note!=0){
+          var fy_note = this.getHilightStrArray(element.fy_note, search)
+          element.fy_note = fy_note
+        }
+        if(element.rhyme!=0){
+          var rhyme = this.getHilightStrArray(element.rhyme, search)
+          element.rhyme = rhyme
+        }
       })
     }
     

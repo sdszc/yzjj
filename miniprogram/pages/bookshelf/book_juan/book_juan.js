@@ -121,4 +121,9 @@ Page({
       url: '/pages/bookshelf/book_catalog/book_catalog?volumeid=' + e.currentTarget.dataset.volumeid,
     })
   },
+  gotobook_content:function(e){
+    wx.navigateTo({
+      url: '/pages/bookshelf/book_content/book_content?id=' + e.currentTarget.dataset.id,
+    })
+  },
 })

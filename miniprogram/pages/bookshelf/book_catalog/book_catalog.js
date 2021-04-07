@@ -81,4 +81,9 @@ Page({
       url: '/pages/bookshelf/book_content/book_content?id=' + e.currentTarget.dataset.id
     })
   },
+  gotobook_content_details:function(e){
+    wx.navigateTo({
+      url: '/pages/bookshelf/book_content_detail/book_content_detail?id=' + e.currentTarget.dataset.id
+    })
+  },
 })

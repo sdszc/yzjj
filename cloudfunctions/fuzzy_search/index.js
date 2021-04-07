@@ -11,13 +11,19 @@ async function getCountIndexUserId(data_base,search) {
   let length = await db.collection(data_base).where(
     _.or([
       { 
-        note:db.RegExp({
+        tips:db.RegExp({
           regexp:'.*'+ search,
           options: 'i'
         })
       },
       {
         original_text:db.RegExp({
+          regexp:'.*'+ search,
+          options: 'i'
+        })
+      },
+      { 
+        note:db.RegExp({
           regexp:'.*'+ search,
           options: 'i'
         })
@@ -31,13 +37,19 @@ async function getListIndexUserId(data_base, search, skip) {
   let one_group = await db.collection(data_base).where(
     _.or([
       { 
-        note:db.RegExp({
+        tips:db.RegExp({
           regexp:'.*'+ search,
           options: 'i'
         })
       },
       {
         original_text:db.RegExp({
+          regexp:'.*'+ search,
+          options: 'i'
+        })
+      },
+      { 
+        note:db.RegExp({
           regexp:'.*'+ search,
           options: 'i'
         })

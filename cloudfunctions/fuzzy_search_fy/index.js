@@ -16,6 +16,12 @@ async function getCountIndexUserId(data_base,search) {
           options: 'i'
         })
       },
+      { 
+        introduction:db.RegExp({
+          regexp:'.*'+ search,
+          options: 'i'
+        })
+      },
       {
         composition:db.RegExp({
           regexp:'.*'+ search,
@@ -23,13 +29,19 @@ async function getCountIndexUserId(data_base,search) {
         })
       },
       {
-        fy_note:db.RegExp({
+        usage:db.RegExp({
           regexp:'.*'+ search,  
           options: 'i'
         })
       },
       {
-        usage:db.RegExp({
+        fy_note:db.RegExp({
+          regexp:'.*'+ search,
+          options: 'i'
+        })
+      },
+      {
+        rhyme:db.RegExp({
           regexp:'.*'+ search,
           options: 'i'
         })
@@ -48,6 +60,12 @@ async function getListIndexUserId(data_base, search, skip) {
           options: 'i'
         })
       },
+      { 
+        introduction:db.RegExp({
+          regexp:'.*'+ search,
+          options: 'i'
+        })
+      },
       {
         composition:db.RegExp({
           regexp:'.*'+ search,
@@ -55,13 +73,19 @@ async function getListIndexUserId(data_base, search, skip) {
         })
       },
       {
-        fy_note:db.RegExp({
+        usage:db.RegExp({
           regexp:'.*'+ search,  
           options: 'i'
         })
       },
       {
-        usage:db.RegExp({
+        fy_note:db.RegExp({
+          regexp:'.*'+ search,
+          options: 'i'
+        })
+      },
+      {
+        rhyme:db.RegExp({
           regexp:'.*'+ search,
           options: 'i'
         })

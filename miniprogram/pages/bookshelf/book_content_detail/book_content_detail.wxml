@@ -1,14 +1,27 @@
 <!--pages/bookshelf/book_content_detail/book_content_detail.wxml-->
 <view wx:for="{{full_text}}" wx:key="item">
+  <view class="title" wx:if="{{item.second_title!=0&item.second_title!=1}}">{{item.second_title}}</view>
   <view class="title" wx:if="{{item.tips}}">{{item.tips}}</view>
-  <view class="title" style="text-indent:2em;"><text decode="{{true}}" selectable="true">{{item.original_text}}</text></view>
-  <view class="text-notes"><text selectable="true">{{item.note}}</text></view>
+  <view class="title" wx:if="{{item.original_text}}" style="text-indent:2em;"><text decode="{{true}}" selectable="true">{{item.original_text}}</text></view>
+  <view class="text-notes" wx:if="{{item.note}}"><text selectable="true">{{item.note}}</text></view>
 </view>
 <view wx:for="{{fang}}" wx:key="item">
   <view class="title"><text selectable="true">{{item.formula_name}}</text></view>
-  <view class="text-notes"><text selectable="true">{{item.composition}}</text></view>
-  <view class="text-notes"><text selectable="true">{{item.usage}}</text></view>
-  <view class="text-notes"><text selectable="true">{{item.fy_note}}</text></view>
+  <view wx:if="{{item.introduction}}" class="text-notes">
+    <text selectable="true">{{item.introduction}}</text>
+  </view>
+  <view wx:if="{{item.composition}}" class="text-notes">
+    <text selectable="true">{{item.composition}}</text>
+  </view>
+  <view wx:if="{{item.usage}}" class="text-notes">
+    <text selectable="true">{{item.usage}}</text>
+  </view>
+  <view wx:if="{{item.fy_note}}" class="text-notes">
+    <text selectable="true">{{item.fy_note}}</text>
+  </view>
+  <view wx:if="{{item.rhyme}}" class="text-notes">
+    <text selectable="true">{{item.rhyme}}</text>
+  </view>
 </view>
 <!--可拖动按钮控件表-->
 <!--buttonStart和buttonEnd一定不能用catch事件，否则按钮点击事件会失效-->
@@ -20,4 +33,4 @@
   <text>{{corner_data}}</text>
   </view>
  </view> -->
- <!-- </view> --> -->
+ <!-- </view> --> 

@@ -1,10 +1,13 @@
 <!--pages/search/search_detail/search_detail.wxml-->
 <view wx:for="{{zheng}}" wx:key="item">
   <!-- <view class="title" wx:if="{{item.tips}}" class="{{item == searchtext ? 'searchHigh' : '' }}">{{item.tips}}</view> -->
-  <view class="title" style="text-indent:2em;">
+  <view wx:if="{{item.tips}}" class="title" style="text-indent:2em;">
+    <text wx:for="{{item.tips}}" wx:key="item" decode="{{true}}" class="{{item == searchtext ? 'searchHigh' : '' }}" selectable="true">{{item}}</text>
+  </view>
+  <view wx:if="{{item.original_text}}" class="title" style="text-indent:2em;">
     <text wx:for="{{item.original_text}}" wx:key="item" decode="{{true}}" class="{{item == searchtext ? 'searchHigh' : '' }}" selectable="true">{{item}}</text>
   </view>
-  <view class="text-notes" class="{{item == searchtext ? 'searchHigh' : '' }}">
+  <view wx:if="{{item.original_text}}" class="text-notes" class="{{item == searchtext ? 'searchHigh' : '' }}">
     <text wx:for="{{item.note}}" wx:key="item" class="{{item == searchtext ? 'searchHigh' : '' }}" selectable="true">{{item}}</text>
   </view>
 </view>
@@ -12,13 +15,19 @@
   <view class="title">
     <text wx:for="{{item.formula_name}}" wx:key="item" decode="{{true}}" class="{{item == searchtext ? 'searchHigh' : '' }}" selectable="true">{{item}}</text>
   </view>
-  <view class="text-notes">
+  <view wx:if="{{item.introduction!=0}}" class="text-notes">
+    <text wx:for="{{item.introduction}}" wx:key="item" class="{{item == searchtext ? 'searchHigh' : '' }}" selectable="true">{{item}}</text>
+  </view>
+  <view wx:if="{{item.composition!=0}}" class="text-notes">
     <text wx:for="{{item.composition}}" wx:key="item" class="{{item == searchtext ? 'searchHigh' : '' }}" selectable="true">{{item}}</text>
   </view>
-  <view class="text-notes">
+  <view wx:if="{{item.usage!=0}}" class="text-notes">
     <text wx:for="{{item.usage}}" wx:key="item" class="{{item == searchtext ? 'searchHigh' : '' }}" selectable="true">{{item}}</text>
   </view>
-  <view class="text-notes">
+  <view wx:if="{{item.fy_note!=0}}" class="text-notes">
     <text wx:for="{{item.fy_note}}" wx:key="item" class="{{item == searchtext ? 'searchHigh' : '' }}" selectable="true">{{item}}</text>
+  </view>
+  <view wx:if="{{item.rhyme!=0}}" class="text-notes">
+    <text wx:for="{{item.rhyme}}" wx:key="item" class="{{item == searchtext ? 'searchHigh' : '' }}" selectable="true">{{item}}</text>
   </view>
 </view>

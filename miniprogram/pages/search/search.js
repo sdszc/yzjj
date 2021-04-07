@@ -119,14 +119,26 @@ Page({
     fy.forEach(element => {
       var formula_name = this.getHilightStrArray(element.formula_name, searchtext)
       element.formula_name = formula_name  
+      if(element.introduction!=0){
+        var introduction = this.getHilightStrArray(element.introduction, searchtext)
+        element.introduction = introduction
+      }
       if(element.composition!=0){
         var composition = this.getHilightStrArray(element.composition, searchtext)
         element.composition = composition
       }
-      var usage = this.getHilightStrArray(element.usage, searchtext)
-      element.usage = usage  
-      var fy_note = this.getHilightStrArray(element.fy_note, searchtext)
-      element.fy_note = fy_note
+      if(element.usage!=0){
+        var usage = this.getHilightStrArray(element.usage, searchtext)
+        element.usage = usage
+      }
+      if(element.fy_note!=0){
+        var fy_note = this.getHilightStrArray(element.fy_note, searchtext)
+        element.fy_note = fy_note
+      }
+      if(element.rhyme!=0){
+        var rhyme = this.getHilightStrArray(element.rhyme, searchtext)
+        element.rhyme = rhyme
+      }
     })
     this.setData({
       result_ll: ll,

@@ -7,29 +7,38 @@ Page({
    */
   data: {
     text : '',
-    last_text: ''
+    last_text: '',
+    fang: ''
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
-  onLoad: function (options) {
+  onLoad:async function (options) {
     var thisid = parseInt(options.id)
     const _ = db.command
-    // console.log(thisid)
-    wx.cloud.callFunction({
+    console.log(thisid)
+   const thisdata = wx.cloud.callFunction({
       name: 'search',
       data:{
         data_base: '01part',
         id: thisid
-      },
-      success:res=>{
-        // console.log(res.result)
-        this.setData({
-          text: res.result.data
-        })
       }
     })
+    // console.log((await thisdata).result.data[0])
+    if ((await thisdata).result.data[0].second_title == 1) {
+      db.collection('02part').where({
+        id:_.in((await thisdata).result.data[0].formula_flag)
+      }).get().then(res=>{
+        this.setData({
+          fang:res.data
+        })
+      })
+    } else {
+      this.setData({
+        text: (await thisdata).result.data
+      })
+    }
 
     // console.log(thisid)
     db.collection('items')
@@ -97,6 +106,11 @@ Page({
   gotobook_content_detail:function(e){
     wx.navigateTo({
       url: '/pages/bookshelf/book_content_detail/book_content_detail?id=' + e.currentTarget.dataset.id
+    })
+  },
+  gotobook_content_detail_fy:function(e){
+    wx.navigateTo({
+      url: '/pages/bookshelf/book_content_detail/book_content_detail?fyid=' + e.currentTarget.dataset.fyid
     })
   },
 })
