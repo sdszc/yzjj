@@ -30,8 +30,9 @@ Page({
           data_base: 'books',
         },
         success:res=>{
+          // console.log(res.result)
           this.setData({
-            bookData: res.result.data
+            bookData: res.result
           })
         }
       })

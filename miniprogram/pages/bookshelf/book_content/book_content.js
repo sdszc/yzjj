@@ -26,9 +26,9 @@ Page({
       }
     })
     // console.log((await thisdata).result)
-    if ((await thisdata).result.data[0].second_title == 1) {
+    if ((await thisdata).result[0].second_title == 1) {
       db.collection('02part').where({
-        id:_.in((await thisdata).result.data[0].formula_flag)
+        id:_.in((await thisdata).result[0].formula_flag)
       }).get().then(res=>{
         this.setData({
           fang:res.data
@@ -36,7 +36,7 @@ Page({
       })
     }  
     this.setData({
-        text: (await thisdata).result.data
+        text: (await thisdata).result
     })
 
     // console.log(thisid)

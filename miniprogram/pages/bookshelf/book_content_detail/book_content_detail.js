@@ -62,7 +62,7 @@ Page({
             })
             .get()
             .then(res=>{
-              console.log(res.data)
+              // console.log(res.data)
               this.setData({
                 fang: res.data
               })
