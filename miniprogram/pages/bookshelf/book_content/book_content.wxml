@@ -4,8 +4,8 @@
 </view>
 <view wx:for="{{text}}" wx:key="item">
   <!-- <view wx:if="{{item.second_title!=0}}" style = 'width:100%' class='text_juan'>{{item.second_title}}</view> -->
-  <view wx:if="{{item.original_text}}" style = 'width:100%;text-indent:2em;' class='text_juan' bindtap="gotobook_content_detail" data-id="{{item.id}}">{{item.original_text}}</view>
-  <view wx:if="{{item.original_text == '' & item.tips != ''}}" style = 'width:100%;text-indent:2em;' class='text_juan' bindtap="gotobook_content_detail" data-id="{{item.id}}">{{item.tips}}</view>
+  <view wx:if="{{item.tips != '' & item.second_title != 0 & item.second_title != 1 & item.second_title != 2}}" style = 'width:100%;text-indent:2em;' class='text_juan' bindtap="gotobook_content_detail" data-id="{{item.id}}">{{item.tips}}</view>
+  <view wx:else style = 'width:100%;text-indent:2em;' class='text_juan' bindtap="gotobook_content_detail" data-id="{{item.id}}">{{item.original_text}}</view>
 </view>
 <view wx:for="{{fang}}" wx:key="item">
   <!-- <view wx:if="{{item.second_title!=0}}" style = 'width:100%' class='text_juan'>{{item.second_title}}</view> -->
