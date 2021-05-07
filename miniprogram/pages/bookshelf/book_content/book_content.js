@@ -8,7 +8,7 @@ Page({
   data: {
     text : '',
     last_text: '',
-    fang: ''
+    fang: '',
   },
 
   /**
@@ -34,11 +34,10 @@ Page({
           fang:res.data
         })
       })
-    } else {
-      this.setData({
+    }  
+    this.setData({
         text: (await thisdata).result.data
-      })
-    }
+    })
 
     // console.log(thisid)
     db.collection('items')

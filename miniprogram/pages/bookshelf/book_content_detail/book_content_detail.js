@@ -9,6 +9,7 @@ Page({
   data: {
     full_text: '',
     fang: '',
+    cijiu: '',
     //按钮位置参数
     buttonTop: 0,
     buttonLeft: 0,
@@ -39,28 +40,36 @@ Page({
         })
         // console.log(res.data[0].formula_flag)
         var data = res.data[0].formula_flag
-        // if (data_element == 'number' && data != 0) {
-        //   db.collection('02part').where({
-        //     id: _.eq(data)
-        //   })
-        //   .get()
-        //   .then(res=>{
-        //     this.setData({
-        //       fang: res.data
-        //     })
-        //   })
-        //  }
-         if (data != 0) {
-          db.collection('02part').where({
+        // console.log(data)
+        var which_table = res.data[0].second_title
+        if(which_table == 2){
+          // console.log(data)
+          db.collection('cj').where({
             id: _.in(data)
           })
           .get()
           .then(res=>{
+            // console.log(res.data)
             this.setData({
-              fang: res.data
+              cijiu: res.data
             })
           })
-        }  
+        }
+        else{
+          if (data != 0) {
+            db.collection('02part').where({
+              id: _.in(data)
+            })
+            .get()
+            .then(res=>{
+              console.log(res.data)
+              this.setData({
+                fang: res.data
+              })
+            })
+          }  
+        }
+        
       })
     } else {
       db.collection('02part').where({
