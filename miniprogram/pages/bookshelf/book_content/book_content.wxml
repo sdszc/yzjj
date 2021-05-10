@@ -2,12 +2,19 @@
 <view wx:for="{{last_text}}" wx:key='item'>
   <view wx:if="{{item.notes!=0}}">{{item.notes}}</view>   
 </view>
-<view wx:for="{{text}}" wx:key="item">
-  <!-- <view wx:if="{{item.second_title!=0}}" style = 'width:100%' class='text_juan'>{{item.second_title}}</view> -->
-  <view wx:if="{{item.tips != '' & (item.second_title == 0 || item.second_title == 1 || item.second_title == 2)}}" style = 'width:100%;text-indent:2em;' class='text_juan' bindtap="gotobook_content_detail" data-id="{{item.id}}">{{item.tips}}</view>
-  <view wx:else style = 'width:100%;text-indent:2em;' class='text_juan' bindtap="gotobook_content_detail" data-id="{{item.id}}">{{item.original_text}}</view>
+<view wx:for="{{text}}" wx:key="item"> 
+  <view wx:if="{{item.original_text}}" style = 'width:100%;text-indent:2em;' class='text_juan' bindtap="gotobook_content_detail" data-id="{{item.id}}">{{item.original_text}}</view>
 </view>
-<view wx:for="{{fang}}" wx:key="item">
-  <!-- <view wx:if="{{item.second_title!=0}}" style = 'width:100%' class='text_juan'>{{item.second_title}}</view> -->
-  <view wx:if="{{item.formula_name}}" style = 'width:100%;text-indent:2em;' class='text_juan' bindtap="gotobook_content_detail_fy" data-fyid="{{item.id}}">{{item.formula_name}}</view>
+<view wx:for="{{title}}" wx:key="item"> 
+  <view wx:if="{{item.second_title}}" style = 'width:100%;text-indent:2em;' class='text_juan' bindtap="gotobook_content_detail_title" data-title="{{item.second_title}}">{{item.second_title}}</view>
 </view>
+<view wx:for="{{tips}}" wx:key="item"> 
+  <view wx:if="{{item.tips}}" style = 'width:100%;text-indent:2em;' class='text_juan' bindtap="gotobook_content_detail_tips" data-tips="{{item.tips}}">{{item.tips}}</view>
+</view>
+<view wx:for="{{fang}}" wx:key="item"> 
+  <!-- <view wx:if="{{item.second_title!=0}}" style = 'width:100%' class='text_juan'>{{item.second_title}}</view> -->
+  <view wx:for="{{item}}" wx:key="item">
+    <view wx:if="{{item.formula_name}}" style = 'width:100%;text-indent:2em;' class='text_juan' bindtap="gotobook_content_detail_fy" data-fyid="{{item.id}}">{{item.formula_name}}</view>
+  </view>
+</view>
+

@@ -6,19 +6,22 @@ Page({
    * 页面的初始数据
    */
   data: {
-    text : '',
     last_text: '',
     fang: '',
+    text: '',
+    tips: '',
+    title: '',
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
-  onLoad:async function (options) {
+  onLoad:async function (options) { 
     var thisid = parseInt(options.id)
     const _ = db.command
-    console.log(thisid)
-   const thisdata = wx.cloud.callFunction({
+    // console.log(thisid)
+
+    const thisdata = wx.cloud.callFunction({
       name: 'search',
       data:{
         data_base: '01part',
@@ -26,18 +29,82 @@ Page({
       }
     })
     // console.log((await thisdata).result)
-    if ((await thisdata).result[0].second_title == 1) {
-      db.collection('02part').where({
-        id:_.in((await thisdata).result[0].formula_flag)
-      }).get().then(res=>{
-        this.setData({
-          fang:res.data
+    let this_data = (await thisdata).result;
+    let this_text = [];
+    let this_fang = [];
+    let this_tips = [];
+    let is_tips = [];
+    let is_title = [];
+    let this_title = [];
+
+    let that = this;
+    this_data.forEach(function(item, index){
+      if (item.second_title == 1) {
+        db.collection('02part').where({
+          id:_.in(item.formula_flag)
+        }).get().then(res=>{
+          this_fang.push(res.data)
+          that.setData({
+            fang: this_fang
+          })
         })
-      })
-    }  
-    this.setData({
-        text: (await thisdata).result
-    })
+      }
+      if (item.second_title == 0 || item.second_title == 2){
+        if (item.tips == '') {
+          this_text.push(item)
+          that.setData({
+            text: this_text
+          })
+          // console.log(this_text)
+        } else {
+          // console.log(item.tips)
+          if(is_tips.indexOf(item.tips)==-1){
+            is_tips.push(item.tips)
+            this_tips.push(item)
+          }
+          that.setData({
+            tips: this_tips
+          })
+        }
+      }
+      if ([0,1,2].indexOf(item.second_title) == -1){
+        if(is_title.indexOf(item.second_title) == -1){
+          is_title.push(item.second_title)
+          this_title.push(item)
+        }
+        that.setData({
+          title: this_title
+        })
+      }
+    });
+
+    
+
+
+    // if(this_data[0].second_title == 0 || this_data[0].second_title == 2) {
+    //   if (this_data[0].tips == ''){
+    //     console.log(this_data[0].tips)
+
+    //   }
+    //   if (this_data[0].tips != ''){
+    //     console.log(this_data[0].tips)
+    //   }
+    // }
+
+    
+    // if (this_data[0].second_title == 1) {
+    //   db.collection('02part').where({
+    //     id:_.in(this_data[0].formula_flag)
+    //   }).get().then(res=>{
+    //     this.setData({
+    //       fang:res.data
+    //     })
+    //   })
+    // }  
+    
+   
+
+   
 
     // console.log(thisid)
     db.collection('items')
@@ -51,6 +118,7 @@ Page({
         last_text: res.data
       })
     })
+    // console.log(this.data.last_text)
     
   },
 
@@ -110,6 +178,16 @@ Page({
   gotobook_content_detail_fy:function(e){
     wx.navigateTo({
       url: '/pages/bookshelf/book_content_detail/book_content_detail?fyid=' + e.currentTarget.dataset.fyid
+    })
+  },
+  gotobook_content_detail_title:function(e){
+    wx.navigateTo({
+      url: '/pages/bookshelf/book_content_detail/book_content_detail?title=' + e.currentTarget.dataset.title
+    })
+  },
+  gotobook_content_detail_tips:function(e){
+    wx.navigateTo({
+      url: '/pages/bookshelf/book_content_detail/book_content_detail?tips=' + e.currentTarget.dataset.tips
     })
   },
 })

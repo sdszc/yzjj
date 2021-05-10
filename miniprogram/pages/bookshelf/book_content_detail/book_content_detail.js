@@ -17,6 +17,8 @@ Page({
     windowWidth: '',
     //角标显示数字
     corner_data:0,
+    text_title: '',
+    text_tips:'',
   },
 
   /**
@@ -25,7 +27,10 @@ Page({
   onLoad: function (options) {
     var thisid = parseInt(options.id)
     var thisfyid = parseInt(options.fyid)
-    // console.log(thisfyid)
+    var thistitle = options.title
+    var thistips = options.tips
+    // console.log(thistitle)
+    // console.log(thistips)
     const _ = db.command
     const $ = db.command.aggregate
     if (thisid) {
@@ -71,7 +76,8 @@ Page({
         }
         
       })
-    } else {
+    } 
+    if (thisfyid) {
       db.collection('02part').where({
         id: _.eq(thisfyid)
       })
@@ -82,6 +88,29 @@ Page({
         })
       })
       
+    }
+
+    if (thistitle){
+      db.collection('01part').where({
+        second_title: _.eq(thistitle)
+      })
+      .get()
+      .then(res=>{
+        this.setData({
+          text_title: res.data
+        })
+      })
+    }
+    if (thistips) {
+      db.collection('01part').where({
+        tips: _.eq(thistips)
+      })
+      .get()
+      .then(res=>{
+        this.setData({
+          text_tips: res.data
+        })
+      })
     }
    
     // 获取购物车控件适配参数
