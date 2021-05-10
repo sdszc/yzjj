@@ -1,6 +1,6 @@
 <!--pages/bookshelf/book_content_detail/book_content_detail.wxml-->
 <view wx:for="{{full_text}}" wx:key="item">
-  <view class="title" style="text-align: center;">{{item.second_title}}</view>
+  <view class="title" style="text-align: center;" wx:if="{{item.second_title}}">{{item.second_title}}</view>
   <view class="title" wx:if="{{item.tips}}">{{item.tips}}</view>
   <view class="title" wx:if="{{item.original_text}}" style="text-indent:2em;"><text decode="{{true}}" selectable="true">{{item.original_text}}</text></view>
   <view class="text-notes" wx:if="{{item.note}}"><text selectable="true">{{item.note}}</text></view>

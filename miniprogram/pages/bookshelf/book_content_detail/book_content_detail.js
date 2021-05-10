@@ -24,7 +24,7 @@ Page({
   /**
    * 生命周期函数--监听页面加载
    */
-  onLoad: function (options) {
+  onLoad: async function (options) {
     var thisid = parseInt(options.id)
     var thisfyid = parseInt(options.fyid)
     var thistitle = options.title
@@ -39,22 +39,17 @@ Page({
       })
       .get()
       .then(res=>{
-        // console.log(res.data)
         this.setData({
           full_text: res.data
         })
-        // console.log(res.data[0].formula_flag)
-        var data = res.data[0].formula_flag
-        // console.log(data)
-        var which_table = res.data[0].second_title
+        let data = res.data[0].formula_flag
+        let which_table = res.data[0].second_title
         if(which_table == 2){
-          // console.log(data)
           db.collection('cj').where({
             id: _.in(data)
           })
           .get()
           .then(res=>{
-            // console.log(res.data)
             this.setData({
               cijiu: res.data
             })
@@ -74,9 +69,8 @@ Page({
             })
           }  
         }
-        
       })
-    } 
+    }
     if (thisfyid) {
       db.collection('02part').where({
         id: _.eq(thisfyid)
@@ -87,9 +81,7 @@ Page({
           fang: res.data
         })
       })
-      
     }
-
     if (thistitle){
       db.collection('01part').where({
         second_title: _.eq(thistitle)
@@ -99,6 +91,33 @@ Page({
         this.setData({
           text_title: res.data
         })
+        let data = res.data[0].formula_flag
+        let which_table = res.data[0].second_title
+        if(which_table == 2){
+          db.collection('cj').where({
+            id: _.in(data)
+          })
+          .get()
+          .then(res=>{
+            this.setData({
+              cijiu: res.data
+            })
+          })
+        }
+        else{
+          if (data != 0) {
+            db.collection('02part').where({
+              id: _.in(data)
+            })
+            .get()
+            .then(res=>{
+              // console.log(res.data)
+              this.setData({
+                fang: res.data
+              })
+            })
+          }  
+        }
       })
     }
     if (thistips) {
@@ -110,6 +129,33 @@ Page({
         this.setData({
           text_tips: res.data
         })
+        let data = res.data[0].formula_flag
+        let which_table = res.data[0].second_title
+        if(which_table == 2){
+          db.collection('cj').where({
+            id: _.in(data)
+          })
+          .get()
+          .then(res=>{
+            this.setData({
+              cijiu: res.data
+            })
+          })
+        }
+        else{
+          if (data != 0) {
+            db.collection('02part').where({
+              id: _.in(data)
+            })
+            .get()
+            .then(res=>{
+              // console.log(res.data)
+              this.setData({
+                fang: res.data
+              })
+            })
+          }  
+        }
       })
     }
    
