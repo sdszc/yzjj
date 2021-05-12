@@ -1,6 +1,6 @@
 <!--pages/book1_content/book1_content.wxml-->
 <view wx:for="{{last_text}}" wx:key='item'>
-  <view wx:if="{{item.notes!=0}}">{{item.notes}}</view>   
+  <view wx:if="{{item.notes!=0}}" class='title_stlye'>{{item.notes}}</view>   
 </view>
 <view wx:for="{{text}}" wx:key="item"> 
   <view wx:if="{{item.original_text}}" style = 'width:100%;text-indent:2em;' class='text_juan' bindtap="gotobook_content_detail" data-id="{{item.id}}">{{item.original_text}}</view>

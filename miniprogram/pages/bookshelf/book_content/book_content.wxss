@@ -8,3 +8,7 @@
   margin: 20px 5px 5px 5px;
   font-weight: 500;
 }
+.title_stlye{
+  text-indent:2em;
+  margin: 5px 5px 5px 5px;
+}

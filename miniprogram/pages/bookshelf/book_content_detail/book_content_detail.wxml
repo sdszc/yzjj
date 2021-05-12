@@ -3,20 +3,20 @@
   <view class="title" style="text-align: center;" wx:if="{{item.second_title}}">{{item.second_title}}</view>
   <view class="title" wx:if="{{item.tips}}">{{item.tips}}</view>
   <view class="title" wx:if="{{item.original_text}}" style="text-indent:2em;"><text decode="{{true}}" selectable="true">{{item.original_text}}</text></view>
-  <view class="text-notes" wx:if="{{item.note}}"><text selectable="true">{{item.note}}</text></view>
+  <view class="text-notes" wx:if="{{item.note}}" class="view-style"><text selectable="true">{{item.note}}</text></view>
 </view>
 <view wx:if="{{text_title[0].second_title}}"  class="title" style="text-align: center;font-size: 45rpx;">{{text_title[0].second_title}}</view>
 <view wx:for="{{text_title}}" wx:key="item">
   <view class="title" wx:if="{{item.tips}}">{{item.tips}}</view>
   <view class="title" wx:if="{{item.original_text}}" style="text-indent:2em;"><text decode="{{true}}" selectable="true">{{item.original_text}}</text></view>
-  <view class="text-notes" wx:if="{{item.note}}"><text selectable="true">{{item.note}}</text></view>
+  <view class="text-notes" wx:if="{{item.note}}" class="view-style"><text selectable="true">{{item.note}}</text></view>
 </view>
 <view wx:if="{{text_tips[0].tips}}" class="title" style="text-align: center;font-size: 45rpx;">{{text_tips[0].tips}}</view>
 <view wx:for="{{text_tips}}" wx:key="item">
   <view class="title" wx:if="{{item.original_text}}" style="text-indent:2em;"><text decode="{{true}}" selectable="true">{{item.original_text}}</text></view>
-  <view class="text-notes" wx:if="{{item.note}}"><text selectable="true">{{item.note}}</text></view>
+  <view class="text-notes" wx:if="{{item.note}}" class="view-style"><text selectable="true">{{item.note}}</text></view>
 </view>
-<view wx:for="{{cijiu}}" wx:key="item">
+<view wx:for="{{cijiu}}" wx:key="item" class="view-style">
   <!-- <view class="title"><text selectable="true">{{item.formula_name}}</text></view> -->
   <view wx:if="{{item.introduction}}" class="text-notes">
     <text selectable="true">{{item.introduction}}</text>
@@ -34,7 +34,7 @@
     <text selectable="true">{{item.note}}</text>
   </view>
 </view>
-<view wx:for="{{fang}}" wx:key="item">
+<view wx:for="{{fang}}" wx:key="item" class="view-style">
   <view class="title"><text selectable="true">{{item.formula_name}}</text></view>
   <view wx:if="{{item.introduction}}" class="text-notes">
     <text selectable="true">{{item.introduction}}</text>
